@@ -127,7 +127,7 @@ var Stage = BaseLayer.extend({
         this._mainBatchNode.addChild(this._player.node);
 
         this._hudLayer = new HUDLayer();
-        this._hudLayer.init(this._player);
+        this._hudLayer.init(this._player, level);
 
         this.addChild(this._hudLayer);
         this.updateMapPosition();
