@@ -1,4 +1,5 @@
 var img_Tileset = "tiles.png";
+var img_Bg = "castle.png";
 var img_Chars = "characters.png";
 var plist_Chars = "characters.plist";
 var fnt_Main = "main.fnt";
@@ -6,6 +7,7 @@ var fnt_MainImg = "main.png";
 
 var g_resources = [
     //image
+    {src:img_Bg},
     {src:img_Tileset},
     {src:img_Chars},
 

@@ -3,16 +3,10 @@
  <tileset firstgid="1" name="tileds" tilewidth="64" tileheight="64">
   <image source="tileds.png" width="512" height="394"/>
  </tileset>
- <layer name="Camada de Tiles 1" width="16" height="12">
+ <layer name="main" width="16" height="12">
   <data encoding="base64" compression="zlib">
    eJyt0LcOgwAMRVGaIlGWJCwkdAgllPD/X5c7MHmyLJ50ZN3VjnPNXHjwEShaLkSEGImi5e544IlU0XIZXngjV7RcgxYdekXLzfhiwapoOev/b+e1/r9AiQq1oT8YMGIy9IYdPxyG/gMsUg4v
   </data>
  </layer>
- <objectgroup name="objects" width="16" height="12">
-  <object type="Player" x="388" y="300" width="85" height="116"/>
-  <object type="Enemy" x="367" y="515" width="179" height="63"/>
- </objectgroup>
- <objectgroup name="collision" width="16" height="12">
-  <object x="615" y="304" width="95" height="65"/>
- </objectgroup>
+ <objectgroup name="main" width="16" height="12"/>
 </map>

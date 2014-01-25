@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="30" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16">
-  <image source="tiles.png" width="160" height="320"/>
+<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="tileds" tilewidth="64" tileheight="64">
+  <image source="tileds.png" width="512" height="394"/>
  </tileset>
- <layer name="main" width="20" height="30">
+ <layer name="Camada de Tiles 1" width="16" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0ANwUdk8ETL1pVHZPE0g1gJibSqZ5w7EHkDsCcSFSOJyJJihBMRMRGBswAGLWTpAzEMEBoHpaPq9oHQ+iWaBMHK4wsIZGZsBsRgJeKiBWALyzkDsggW7IqlhZEDENzMWM5DTmC8Q+2HB/khquBkQ8cOLZhbMLpg9XUCciWZWBhB3I+kRZUDEjziaeaJYxMuAOAKIw6B0OZoeWP6B5SFscujiIJCARYxS81KBuIUK5iHHIXr+RTcPuXzDVZYgxyEyJqbMQMeKOMwCYQDNFh3A
+   eJyt0LcOgwAMRVGaIlGWJCwkdAgllPD/X5c7MHmyLJ50ZN3VjnPNXHjwEShaLkSEGImi5e544IlU0XIZXngjV7RcgxYdekXLzfhiwapoOev/b+e1/r9AiQq1oT8YMGIy9IYdPxyG/gMsUg4v
   </data>
  </layer>
- <objectgroup name="objects" width="20" height="30">
-  <object type="Player" x="31" y="443" width="16" height="16"/>
-  <object type="Enemy" x="256" y="411" width="16" height="16"/>
-  <object type="EnemyLimit" x="208" y="416" width="16" height="16"/>
-  <object type="Cookie" x="208" y="192" width="16" height="16"/>
-  <object type="Cookie" x="224" y="192" width="16" height="16"/>
-  <object type="Cookie" x="240" y="192" width="16" height="16"/>
-  <object type="Bone" x="224" y="320" width="16" height="16"/>
-  <object type="LevelEnd" x="304" y="160" width="16" height="80"/>
- </objectgroup>
- <objectgroup name="collision" width="20" height="30">
-  <object x="128" y="368" width="48" height="32"/>
-  <object x="0" y="160">
-   <polyline points="0,-160 0,128 32,128 32,144 0,144 0,304 224,304 224,272 320,272 320,144 48,144 48,128 128,128 176,80 320,80 320,-160"/>
-  </object>
-  <object x="16" y="352" width="64" height="48"/>
-  <object x="208" y="208" width="48" height="16"/>
- </objectgroup>
 </map>
