@@ -17,6 +17,7 @@ var Stage = BaseLayer.extend({
     _halfWinSize: null,
     _tileMapSize: null,
     _contactListener: null,
+    _bgLayer: null,
     _mainLayer: null,
     _mainBatchNode: null,
     _tiledMap: null,
@@ -43,6 +44,7 @@ var Stage = BaseLayer.extend({
         cc.SpriteFrameCache.getInstance().addSpriteFrames(plist_Chars);
 
         this._contactListener = createContactListener();
+        this._bgLayer = cc.Layer.create();
         this._mainLayer = cc.Layer.create();
         this._mainBatchNode = cc.SpriteBatchNode.create(img_Chars);
         this._tiledMap = cc.TMXTiledMap.create(kTmxPrefix + level + ".tmx");
@@ -64,8 +66,11 @@ var Stage = BaseLayer.extend({
         this._mainLayer.addChild(this._mainBatchNode);
 
         var skyLayer = cc.LayerColor.create(cc.c4b(123, 213, 242, 255));
+        skyLayer.setContentSize(cc.SizeMake(10, 10));
+        skyLayer.setPosition(cc.p(100, 100));
 
-        this.addChild(skyLayer);
+        this._bgLayer.addChild(skyLayer);
+        this.addChild(this._bgLayer);
         this.addChild(this._mainLayer);
 
         var gravity = new b2Vec2(0, kGravity);
@@ -311,7 +316,11 @@ var Stage = BaseLayer.extend({
         var actualPosition = cc.p(x, y);
         var centerOfView = cc.p(this._halfWinSize.width, this._halfWinSize.height);
         var viewPoint = cc.pSub(centerOfView, actualPosition);
+
+        var parallaxMultiplier = 0.5;
+
         this._mainLayer.setPosition(viewPoint);
+        this._bgLayer.setPosition(cc.p(viewPoint.x * parallaxMultiplier, viewPoint.y * parallaxMultiplier));
 
     },
 
