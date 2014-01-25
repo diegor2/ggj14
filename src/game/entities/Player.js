@@ -35,42 +35,16 @@ var Player = Actor.extend({
         this.node = cc.Sprite.createWithSpriteFrameName("dog_idle_1.png");
         this._spriteFrameName = "dog";
         this.type = GameObjectType.Player;
+        this.life = kPlayerMaxLife;
 
         this._super(b2world, properties);
-
-    },
-
-    attack: function() {
-
-        if (this._attackTime > 0)
-            return;
-        this._attackTime = kDefaultAttackTime;
 
     },
 
     update: function(delta) {
         this._super(delta);
 
-        if (this._attackTime > 0) {
-
-            var contactType = this.node.isFlippedX() ? ContactType.LeftHitArea : ContactType.RightHitArea;
-            var contacts = this._contacts[contactType];
-
-            for(var c in contacts)
-            {
-                var contactContainer = contacts[c].contactContainer;
-                if(!contactContainer || contactContainer.type != ContactType.Body || !(contactContainer.gameObject instanceof GameObject) || contactContainer.gameObject.state == GameObjectState.Dead)
-                    continue;
-
-                this._hitEnemy(contactContainer.gameObject);
-            }
-        }
-
-    },
-
-    _hitEnemy: function(enemy) {
-
-        enemy.takeHit(this.node.isFlippedX() ? MovingState.Left : MovingState.Right);
+        this._checkAttackOnType(Enemy);
 
     },
 

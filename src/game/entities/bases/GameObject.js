@@ -257,6 +257,25 @@ var GameObject = cc.Class.extend({
 
     handleCollision: function (contactContainer) {
 
+    },
+
+    _checkAttackOnType: function(type) {
+
+        if (this._attackTime <= 0)
+            return;
+
+        var contactType = this.node.isFlippedX() ? ContactType.LeftHitArea : ContactType.RightHitArea;
+        var contacts = this._contacts[contactType];
+
+        for(var c in contacts)
+        {
+            var contactContainer = contacts[c].contactContainer;
+            if(!contactContainer || contactContainer.type != ContactType.Body || !(contactContainer.gameObject instanceof type) || contactContainer.gameObject.state == GameObjectState.Dead)
+                continue;
+
+            contactContainer.gameObject.takeHit(this.node.isFlippedX() ? MovingState.Left : MovingState.Right);
+        }
+
     }
 
 });

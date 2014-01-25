@@ -38,6 +38,7 @@ var Enemy = Actor.extend({
         this.node = cc.Sprite.createWithSpriteFrameName("dog2_idle_1.png");
         this._spriteFrameName = "dog2";
         this.type = GameObjectType.Enemy;
+        this.life = kEnemyMaxLife;
 
         this._super(b2world, properties);
 
@@ -51,30 +52,13 @@ var Enemy = Actor.extend({
     update: function(delta) {
 
         this.reactToPlayer();
+        this._checkAttackOnType(Player);
 
         this._super(delta);
 
     },
 
     handleCollision: function(contactContainer) {
-
-    },
-
-    takeHit: function(direction) {
-
-        if (this._damageTime > 0)
-            return;
-        this._damageTime = kPlayerDamageTime;
-
-        this._life--;
-
-        if (this._life <= 0)
-            this.die();
-
-        var impulse = new b2Vec2(direction == MovingState.Right ? kPlayerDamageImpulseX : -kPlayerDamageImpulseX, 0);
-
-        this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
-        this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
     },
     
@@ -109,6 +93,6 @@ var Enemy = Actor.extend({
                     break;
             }
         }
-    },
+    }
 
 });

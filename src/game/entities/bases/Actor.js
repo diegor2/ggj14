@@ -6,13 +6,13 @@ var Actor = GameObject.extend({
     horizontalMovingState: MovingState.Stopped,
     verticalMovingState: MovingState.Stopped,
     automaticMovement: true,
+    life: 0,
 
     // "private" properties
 
     _walkForceModifier: 1,
     _damageTime: 0,
     _attackTime: 0,
-    _life: 5,
 
     // "private" methods
 
@@ -166,6 +166,32 @@ var Actor = GameObject.extend({
         }
 
         this._updateAnimation();
+
+    },
+
+    attack: function() {
+
+        if (this._attackTime > 0)
+            return;
+        this._attackTime = kDefaultAttackTime;
+
+    },
+
+    takeHit: function(direction) {
+
+        if (this._damageTime > 0)
+            return;
+        this._damageTime = kPlayerDamageTime;
+
+        this.life--;
+
+        if (this.life <= 0)
+            this.die();
+
+        var impulse = new b2Vec2(direction == MovingState.Right ? kPlayerDamageImpulseX : -kPlayerDamageImpulseX, 0);
+
+        this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
+        this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
     }
 

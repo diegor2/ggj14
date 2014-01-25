@@ -1,108 +1,52 @@
 var HUDLayer = cc.Layer.extend({
 
     _player: null,
-    _boneContainer: null,
-    _boneLabel: null,
-    _bonePreviousCount: -1,
-    _cookieContainer: null,
-    _cookieLabel: null,
-    _cookiePreviousCount: -1,
+    _lifeHalfs: null,
+    _lifePreviousValue: -1,
 
     init: function(player) {
 
         this._player = player;
 
         var winSize = cc.Director.getInstance().getWinSize();
+        var batchNode = cc.SpriteBatchNode.create(img_Chars);
 
-        // BONES -------------------------------------------------
+        this._lifeHalfs = [];
 
-        this._boneContainer = cc.Layer.create();
+        for (var i = 0; i < kPlayerMaxLife; i++) {
 
-        var boneImage = cc.Sprite.createWithSpriteFrameName("bone.png");
-        boneImage.setAnchorPoint(cc.p(0, 1));
-        boneImage.setPosition(cc.p(3, winSize.height - 3));
+            var lifeImage = cc.Sprite.createWithSpriteFrameName("bone.png");
+            var imageWidth = lifeImage.getContentSize().width;
 
-        var boneImageShadow = cc.Sprite.createWithSpriteFrameName("bone.png");
-        boneImageShadow.setAnchorPoint(boneImage.getAnchorPoint());
-        boneImageShadow.setPosition(cc.pAdd(boneImage.getPosition(), cc.p(1, -1)));
-        boneImageShadow.setColor(cc.c3b(0, 0, 0));
+            lifeImage.setAnchorPoint(cc.p(0, 1));
+            lifeImage.setPosition(cc.p(3 + i * imageWidth + Math.floor(i / 2) * 3, winSize.height - 3));
 
-        this._boneLabel = cc.LabelBMFont.create("0", fnt_Main, 50, cc.TEXT_ALIGNMENT_LEFT);
-        this._boneLabel.setAnchorPoint(cc.p(0, 1));
-        this._boneLabel.setPosition(cc.p(21, winSize.height - 8));
+            batchNode.addChild(lifeImage);
+            this._lifeHalfs.push(lifeImage);
 
-        var boneBatchNode = cc.SpriteBatchNode.create(img_Chars);
+        }
 
-        boneBatchNode.addChild(boneImageShadow);
-        boneBatchNode.addChild(boneImage);
-        this._boneContainer.addChild(boneBatchNode);
-        this._boneContainer.addChild(this._boneLabel);
-
-        this.addChild(this._boneContainer);
-
-        // COOKIES -------------------------------------------------
-
-        this._cookieContainer = cc.Layer.create();
-
-        var cookieImage = cc.Sprite.createWithSpriteFrameName("cookie.png");
-        cookieImage.setAnchorPoint(cc.p(0, 1));
-        cookieImage.setPosition(cc.p(40, winSize.height - 2));
-
-        var cookieImageShadow = cc.Sprite.createWithSpriteFrameName("cookie.png");
-        cookieImageShadow.setAnchorPoint(cookieImage.getAnchorPoint());
-        cookieImageShadow.setPosition(cc.pAdd(cookieImage.getPosition(), cc.p(1, -1)));
-        cookieImageShadow.setColor(cc.c3b(0, 0, 0));
-
-        this._cookieLabel = cc.LabelBMFont.create("0", fnt_Main, 50, cc.TEXT_ALIGNMENT_LEFT);
-        this._cookieLabel.setAnchorPoint(cc.p(0, 1));
-        this._cookieLabel.setPosition(cc.p(56, winSize.height - 8));
-
-        var cookieBatchNode = cc.SpriteBatchNode.create(img_Chars);
-
-        cookieBatchNode.addChild(cookieImageShadow);
-        cookieBatchNode.addChild(cookieImage);
-        this._cookieContainer.addChild(cookieBatchNode);
-        this._cookieContainer.addChild(this._cookieLabel);
-
-        this.addChild(this._cookieContainer);
+        this.addChild(batchNode);
 
     },
 
     update: function(delta) {
 
-        var bonesChanged = this._bonePreviousCount != 0;
-        var cookiesChanged = this._cookiePreviousCount != 0;
+        var playerLife = this._player.life;
 
-        this._boneLabel.setString("0");
-        this._cookieLabel.setString("0");
+        var lifeChanged = this._lifePreviousValue != playerLife;
 
-        this._bonePreviousCount = 0;
-        this._cookiePreviousCount = 0;
+        this._lifePreviousValue = playerLife;
 
-        var offset = 30;
+        if (lifeChanged) {
 
-        if (bonesChanged) {
-            this._boneContainer.stopAllActions();
+            for (var i = 0; i < kPlayerMaxLife; i++) {
 
-            var action = cc.Sequence.create(
-                cc.MoveTo.create(0.1 * (this._boneContainer.getPositionY() / offset), cc.p(0, 0)),
-                cc.DelayTime.create(4),
-                cc.MoveTo.create(1, cc.p(0, offset))
-            );
+                var lifeImage = this._lifeHalfs[i];
+                lifeImage.setOpacity(i < playerLife ? 255 : 100);
 
-            this._boneContainer.runAction(action);
-        }
+            }
 
-        if (cookiesChanged) {
-            this._cookieContainer.stopAllActions();
-
-            var action = cc.Sequence.create(
-                cc.MoveTo.create(0.1 * (this._boneContainer.getPositionY() / offset), cc.p(0, 0)),
-                cc.DelayTime.create(4),
-                cc.MoveTo.create(1, cc.p(0, offset))
-            );
-
-            this._cookieContainer.runAction(action);
         }
 
     }
