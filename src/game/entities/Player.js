@@ -1,37 +1,32 @@
 
 var Player = Actor.extend({
 
-    cookies: 0,
-    bones: 0,
-    didHit: false,
-
     _addFixtures: function() {
 
-        var width = this.node.getContentSize().width * 0.2;
-        var height = this.node.getContentSize().height * 0.35;
-        var y = -(this.node.getContentSize().height * 0.25);
+        var width = this.node.getContentSize().width * 0.1;
 
-        this._addRectangularFixture(width, height, 0, y);
-    
-        var basicSensorWidth = (width * 0.9 * this.node.getScale()) / PTM_RATIO;
-        var basicSensorY = (height / 2 * this.node.getScale()) / PTM_RATIO;
+        this._addCircularFixture(width);
 
-        //foot sensor shape
-        var footSensorShape = new b2PolygonShape;
-        footSensorShape.SetAsBox(basicSensorWidth / 2, 0.015, new b2Vec2(0, y * this.node.getScale() / PTM_RATIO - basicSensorY), 0);
-    
-        //foot sensor shape
-        var headSensorShape = new b2PolygonShape;
-        headSensorShape.SetAsBox(basicSensorWidth / 2, 0.015, new b2Vec2(0, y * this.node.getScale() / PTM_RATIO + basicSensorY), 0);
-    
-        var footContact = new ContactContainer;
-        footContact.type = ContactType.Foot;
-    
-        var headContact = new ContactContainer;
-        headContact.type = ContactType.Head;
+        var scale = this.node ? this.node.getScale() : 1;
+        var hitAreaRadius = width * 4;
+        var hitAreaMargin = hitAreaRadius;
 
-        this._createSensorFixture(footSensorShape, footContact);
-        this._createSensorFixture(headSensorShape, headContact);
+        var leftSensorShape = new b2CircleShape;
+        leftSensorShape.set_m_radius(hitAreaRadius * scale / PTM_RATIO);
+        leftSensorShape.set_m_p(new b2Vec2(-hitAreaMargin / PTM_RATIO, 0));
+
+        var rightSensorShape = new b2CircleShape;
+        rightSensorShape.set_m_radius(hitAreaRadius * scale / PTM_RATIO);
+        rightSensorShape.set_m_p(new b2Vec2(hitAreaMargin / PTM_RATIO, 0));
+    
+        var leftHitArea = new ContactContainer;
+        leftHitArea.type = ContactType.LeftHitArea;
+    
+        var rightHitArea = new ContactContainer;
+        rightHitArea.type = ContactType.RightHitArea;
+
+        this._createSensorFixture(leftSensorShape, leftHitArea);
+        this._createSensorFixture(rightSensorShape, rightHitArea);
     
     },
     
@@ -45,33 +40,43 @@ var Player = Actor.extend({
 
     },
 
+    attack: function() {
+
+        if (this._attackTime > 0)
+            return;
+        this._attackTime = kDefaultAttackTime;
+
+    },
+
     update: function(delta) {
         this._super(delta);
 
-        this._damageTime -= delta;
-        if (this._damageTime < 0)
-            this._damageTime = 0;
+        if (this._attackTime > 0) {
+
+            var contactType = this.node.isFlippedX() ? ContactType.LeftHitArea : ContactType.RightHitArea;
+            var contacts = this._contacts[contactType];
+
+            for(var c in contacts)
+            {
+                var contactContainer = contacts[c].contactContainer;
+                if(!contactContainer || contactContainer.type != ContactType.Body || !(contactContainer.gameObject instanceof GameObject) || contactContainer.gameObject.state == GameObjectState.Dead)
+                    continue;
+
+                this._hitEnemy(contactContainer.gameObject);
+            }
+        }
+
+    },
+
+    _hitEnemy: function(enemy) {
+
+        enemy.takeHit(this.node.isFlippedX() ? MovingState.Left : MovingState.Right);
 
     },
 
     handleCollisionWithGameObject: function(gameObject) {
 
         switch (gameObject.type) {
-
-            case GameObjectType.Enemy:
-
-                if (this._damageTime > 0)
-                    return;
-                this._damageTime = kPlayerDamageTime;
-                this.didHit = true;
-
-                var throwToLeft = gameObject.b2body.GetPosition().get_x() > this.b2body.GetPosition().get_x();
-                var impulse = new b2Vec2(throwToLeft ? -kPlayerDamageImpulseX : kPlayerDamageImpulseX, kPlayerDamageImpulseY);
-
-                this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
-                this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
-
-                break;
 
             case GameObjectType.LevelEnd:
                 gameObject.die();

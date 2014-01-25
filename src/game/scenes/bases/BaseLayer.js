@@ -20,7 +20,7 @@ var BaseLayer = cc.Layer.extend({
 
         this._winSize = cc.Director.getInstance().getWinSize();
 
-        this.setTouchEnabled(true);
+        //this.setTouchEnabled(true);
         //this.setTouchMode(cc.TOUCH_ONE_BY_ONE);
         this.setKeyboardEnabled(true);
 

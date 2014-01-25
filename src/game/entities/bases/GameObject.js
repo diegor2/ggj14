@@ -107,7 +107,7 @@ var GameObject = cc.Class.extend({
         //fixture definition
         var fixtureDef = new b2FixtureDef;
         fixtureDef.set_shape(b2shape);
-        fixtureDef.set_density(1);
+        fixtureDef.set_density(0);
         fixtureDef.set_isSensor(true);
 
         //add sensor fixture
@@ -127,10 +127,14 @@ var GameObject = cc.Class.extend({
 
         this._contacts = {};
 
-        var contactTypes = [ContactType.Body, ContactType.Head, ContactType.Foot];
+        var contactTypes = [ContactType.Body, ContactType.LeftHitArea, ContactType.RightHitArea];
 
         for (var c in contactTypes) {
             this._contacts[contactTypes[c]] = [];
+        }
+
+        if (this.node) {
+            this.node.setAnchorPoint(cc.p(0.5, 0));
         }
 
         this._initialPosition = cc.p(0, 0);

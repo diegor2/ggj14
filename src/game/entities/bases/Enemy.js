@@ -10,31 +10,30 @@ var Enemy = Actor.extend({
 
     _addFixtures: function() {
 
-        var width = this.node.getContentSize().width * 0.2;
-        var height = this.node.getContentSize().height * 0.35;
-        var y = -(this.node.getContentSize().height * 0.25);
+        var width = this.node.getContentSize().width * 0.1;
 
-        this._addRectangularFixture(width, height, 0, y);
+        this._addCircularFixture(width);
 
-        var basicSensorWidth = (width * 0.9 * this.node.getScale()) / PTM_RATIO;
-        var basicSensorY = (height / 2 * this.node.getScale()) / PTM_RATIO;
+        var scale = this.node ? this.node.getScale() : 1;
+        var hitAreaRadius = width * 4;
+        var hitAreaMargin = hitAreaRadius;
 
-        //foot sensor shape
-        var footSensorShape = new b2PolygonShape;
-        footSensorShape.SetAsBox(basicSensorWidth / 2, 0.015, new b2Vec2(0, y * this.node.getScale() / PTM_RATIO - basicSensorY), 0);
+        var leftSensorShape = new b2CircleShape;
+        leftSensorShape.set_m_radius(hitAreaRadius * scale / PTM_RATIO);
+        leftSensorShape.set_m_p(new b2Vec2(-hitAreaMargin / PTM_RATIO, 0));
 
-        //foot sensor shape
-        var headSensorShape = new b2PolygonShape;
-        headSensorShape.SetAsBox(basicSensorWidth / 2, 0.015, new b2Vec2(0, y * this.node.getScale() / PTM_RATIO + basicSensorY), 0);
+        var rightSensorShape = new b2CircleShape;
+        rightSensorShape.set_m_radius(hitAreaRadius * scale / PTM_RATIO);
+        rightSensorShape.set_m_p(new b2Vec2(hitAreaMargin / PTM_RATIO, 0));
 
-        var footContact = new ContactContainer;
-        footContact.type = ContactType.Foot;
+        var leftHitArea = new ContactContainer;
+        leftHitArea.type = ContactType.LeftHitArea;
 
-        var headContact = new ContactContainer;
-        headContact.type = ContactType.Head;
+        var rightHitArea = new ContactContainer;
+        rightHitArea.type = ContactType.RightHitArea;
 
-        this._createSensorFixture(footSensorShape, footContact);
-        this._createSensorFixture(headSensorShape, headContact);
+        this._createSensorFixture(leftSensorShape, leftHitArea);
+        this._createSensorFixture(rightSensorShape, rightHitArea);
     
     },
     
@@ -102,8 +101,23 @@ var Enemy = Actor.extend({
 
     handleCollision: function(contactContainer) {
 
-        if (contactContainer.type == ContactType.EnemyLimit && this._directionChangeTime <= 0 && this._directionChangeIdleTime <= 0)
-            this._changeDirection(this._directionChangeMaxIdleTime);
+    },
+
+    takeHit: function(direction) {
+
+        if (this._damageTime > 0)
+            return;
+        this._damageTime = kPlayerDamageTime;
+
+        this._life--;
+
+        if (this._life <= 0)
+            this.die();
+
+        var impulse = new b2Vec2(direction == MovingState.Right ? kPlayerDamageImpulseX : -kPlayerDamageImpulseX, 0);
+
+        this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
+        this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
     }
 
