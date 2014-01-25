@@ -20,6 +20,8 @@ var kStopVelocityMultiplier = 0.75;
 var kStopVelocityMultiplierWhenDamaged = 0.95;
 var kEnemyDirectionChangeTime = 0.25;
 
+var kEnemyPeacefulDistance = 2.0;
+
 var MovingState = {
     Stopped: 0,
     Left: 1,

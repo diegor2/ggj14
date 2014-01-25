@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c911d84d-8f48-4df8-8ba8-b461b15bb324" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/entities/bases/Enemy.js" afterPath="$PROJECT_DIR$/src/game/entities/bases/Enemy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/scenes/Stage.js" afterPath="$PROJECT_DIR$/src/game/scenes/Stage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/globals/common.js" afterPath="$PROJECT_DIR$/src/game/globals/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GGJ14.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +39,34 @@
       <file leaf-file-name="Enemy.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Enemy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="26" selection-start="3369" selection-end="3369" vertical-scroll-proportion="0.37596303" vertical-offset="1241" max-vertical-offset="1920">
+            <state line="128" column="102" selection-start="4439" selection-end="4439" vertical-scroll-proportion="0.44530046" vertical-offset="1631" max-vertical-offset="2280">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/entities/Player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="23" selection-start="1994" selection-end="1996" vertical-scroll-proportion="-9.538462" vertical-offset="727" max-vertical-offset="1350">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actor.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Actor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="135" column="50" selection-start="5184" selection-end="5184" vertical-scroll-proportion="-7.8846154" vertical-offset="1820" max-vertical-offset="2430">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/globals/common.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="32" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1080">
               <folding />
             </state>
           </provider>
@@ -60,18 +87,18 @@
       <list>
         <option value="$PROJECT_DIR$/cocos2d.js" />
         <option value="$PROJECT_DIR$/main.js" />
-        <option value="$PROJECT_DIR$/src/game/entities/bases/Actor.js" />
         <option value="$PROJECT_DIR$/src/game/entities/Player.js" />
-        <option value="$PROJECT_DIR$/src/game/globals/common.js" />
         <option value="$PROJECT_DIR$/src/game/scenes/Stage.js" />
+        <option value="$PROJECT_DIR$/src/game/entities/bases/Actor.js" />
+        <option value="$PROJECT_DIR$/src/game/globals/common.js" />
         <option value="$PROJECT_DIR$/src/game/entities/bases/Enemy.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="42" />
+    <option name="x" value="43" />
     <option name="y" value="22" />
-    <option name="width" value="1324" />
+    <option name="width" value="1323" />
     <option name="height" value="746" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -307,14 +334,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="22" width="1324" height="746" extended-state="0" />
-    <editor active="false" />
+    <frame x="43" y="22" width="1323" height="746" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293944" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21299094" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21315193" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -323,7 +351,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -355,42 +382,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="32" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1425" />
+        <state line="30" column="32" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1425">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="6" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1380" />
+        <state line="35" column="6" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1380">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cocos2d.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="49" selection-start="3074" selection-end="3074" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350" />
+        <state line="65" column="49" selection-start="3074" selection-end="3074" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cocos2d.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="49" selection-start="3074" selection-end="3074" vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="1350" />
+        <state line="65" column="49" selection-start="3074" selection-end="3074" vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="1350">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/scenes/MainScene.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="29" selection-start="1929" selection-end="1929" vertical-scroll-proportion="-0.049798116" vertical-offset="682" max-vertical-offset="1425" />
+        <state line="43" column="29" selection-start="1929" selection-end="1929" vertical-scroll-proportion="-0.049798116" vertical-offset="682" max-vertical-offset="1425">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cocos2d.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="18" selection-start="5104" selection-end="5104" vertical-scroll-proportion="0.20502092" vertical-offset="1683" max-vertical-offset="2400" />
+        <state line="122" column="18" selection-start="5104" selection-end="5104" vertical-scroll-proportion="0.20502092" vertical-offset="1683" max-vertical-offset="2400">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Abstract.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="41" selection-start="341" selection-end="341" vertical-scroll-proportion="0.29761904" vertical-offset="0" max-vertical-offset="756" />
+        <state line="15" column="41" selection-start="341" selection-end="341" vertical-scroll-proportion="0.29761904" vertical-offset="0" max-vertical-offset="756">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/entities/collectibles/Bone.js">
@@ -407,12 +450,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Collectible.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="61" selection-start="589" selection-end="589" vertical-scroll-proportion="0.37698412" vertical-offset="0" max-vertical-offset="756" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/entities/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="53" selection-start="1972" selection-end="1972" vertical-scroll-proportion="0.53571427" vertical-offset="510" max-vertical-offset="1350">
+        <state line="19" column="61" selection-start="589" selection-end="589" vertical-scroll-proportion="0.37698412" vertical-offset="0" max-vertical-offset="756">
           <folding />
         </state>
       </provider>
@@ -424,19 +462,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Actor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="33" selection-start="5770" selection-end="5770" vertical-scroll-proportion="0.7538101" vertical-offset="1577" max-vertical-offset="2430" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/scenes/bases/BaseLayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5205" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/globals/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="16" selection-start="716" selection-end="716" vertical-scroll-proportion="0.5496536" vertical-offset="94" max-vertical-offset="960">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5205">
           <folding />
         </state>
       </provider>
@@ -448,9 +476,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cocos2d/support/CCPointExtension.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="196" column="3" selection-start="5080" selection-end="5080" vertical-scroll-proportion="0.33281973" vertical-offset="2364" max-vertical-offset="7290">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entities/Player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="23" selection-start="1994" selection-end="1996" vertical-scroll-proportion="-9.538462" vertical-offset="727" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Actor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="50" selection-start="5184" selection-end="5184" vertical-scroll-proportion="-7.8846154" vertical-offset="1820" max-vertical-offset="2430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/globals/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="32" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/entities/bases/Enemy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="26" selection-start="3369" selection-end="3369" vertical-scroll-proportion="0.37596303" vertical-offset="1241" max-vertical-offset="1920">
+        <state line="128" column="102" selection-start="4439" selection-end="4439" vertical-scroll-proportion="0.44530046" vertical-offset="1631" max-vertical-offset="2280">
           <folding />
         </state>
       </provider>
