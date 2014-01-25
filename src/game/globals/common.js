@@ -40,6 +40,12 @@ var GameObjectState = {
     Dead: 1
 };
 
+var EnemyState = {
+    Defence: 0,
+    Roaming: 1,
+    Attack: 2,
+};
+
 var GameObjectType  = {
     Unknown: 0,
     Player: 1,

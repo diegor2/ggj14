@@ -141,9 +141,8 @@ var Stage = BaseLayer.extend({
             floorFixture.customData = floorContact;
         }
 
-        for (var i = 0; i < this._enemies.length; i++) {
-            if (this._enemies[i].state == GameObjectState.Dead)
-                this._enemies.player = this._player;
+        for (var i in this._enemies) {
+            this._enemies.player = this._player;
         }
 
         this._mainBatchNode.addChild(this._player.node);
@@ -237,7 +236,7 @@ var Stage = BaseLayer.extend({
 
         var gameObject = this._createGameObject(Enemy, properties);
         gameObject.player = this._player;
-
+		gameObject
         this._enemies.push(gameObject);
 
         return gameObject;

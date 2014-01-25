@@ -7,7 +7,8 @@ var Enemy = Actor.extend({
     _directionChangeMaxIdleTime: 0,
     _lastMovingState: MovingState.Right,
     player: null,
-
+	state: EnemyState.Defence,
+	
     _addFixtures: function() {
 
         var width = this.node.getContentSize().width * 0.2;
@@ -105,6 +106,18 @@ var Enemy = Actor.extend({
         if (contactContainer.type == ContactType.EnemyLimit && this._directionChangeTime <= 0 && this._directionChangeIdleTime <= 0)
             this._changeDirection(this._directionChangeMaxIdleTime);
 
-    }
+    },
+    
+    playerIsNear: function () {
+    
+		var position = this.b2body.GetPosition();
+		var playerPosition = this.player.b2body.GetPosition();
+
+
+
+		this.node.setPosition(position.get_x() * PTM_RATIO, position.get_y() * PTM_RATIO);
+
+    
+    },
 
 });
