@@ -16,6 +16,7 @@ var Stage = BaseLayer.extend({
     _level: 1,
     _halfWinSize: null,
     _tileMapSize: null,
+    _bgSize: null,
     _contactListener: null,
     _bgLayer: null,
     _mainLayer: null,
@@ -54,6 +55,7 @@ var Stage = BaseLayer.extend({
             this._tiledMap.getMapSize().width * this._tiledMap.getTileSize().width,
             this._tiledMap.getMapSize().height * this._tiledMap.getTileSize().height
         );
+        this._bgSize = this._bgLayer.getContentSize();
 
         var mainBatchNodeTexture = this._mainBatchNode.getTexture();
 		
@@ -65,9 +67,8 @@ var Stage = BaseLayer.extend({
         this._mainLayer.addChild(this._tiledMap);
         this._mainLayer.addChild(this._mainBatchNode);
 
-        var skyLayer = cc.LayerColor.create(cc.c4b(123, 213, 242, 255));
-        skyLayer.setContentSize(cc.SizeMake(10, 10));
-        skyLayer.setPosition(cc.p(100, 100));
+        var skyLayer = cc.LayerGradient.create(cc.c4b(123, 213, 242, 255), cc.c4b(200, 150, 0, 255));
+        skyLayer.setContentSize(cc.SizeMake(2000, 500));
 
         this._bgLayer.addChild(skyLayer);
         this.addChild(this._bgLayer);
@@ -317,10 +318,14 @@ var Stage = BaseLayer.extend({
         var centerOfView = cc.p(this._halfWinSize.width, this._halfWinSize.height);
         var viewPoint = cc.pSub(centerOfView, actualPosition);
 
-        var parallaxMultiplier = 0.5;
-
         this._mainLayer.setPosition(viewPoint);
-        this._bgLayer.setPosition(cc.p(viewPoint.x * parallaxMultiplier, viewPoint.y * parallaxMultiplier));
+
+        var widthDiff = this._tileMapSize.width - this._bgSize.width;
+
+        var bgX = (viewPoint.x / this._tileMapSize.width) * this._bgSize.width;
+        var bgY = (viewPoint.y / this._tileMapSize.height) * this._bgSize.height;
+
+        this._bgLayer.setPosition(cc.p(bgX, bgY));
 
     },
 
