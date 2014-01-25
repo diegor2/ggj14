@@ -56,11 +56,6 @@ var Stage = BaseLayer.extend({
         );
 
         var mainBatchNodeTexture = this._mainBatchNode.getTexture();
-		
-//		if (mainBatchNodeTexture.setAliasTexParameters) {
-//			mainBatchNodeTexture.setAliasTexParameters();
-//			this._tiledMap.getLayer("main").getTexture().setAliasTexParameters();
-//        }
 
         this._mainLayer.addChild(this._tiledMap);
         this._mainLayer.addChild(this._mainBatchNode);

@@ -70,9 +70,15 @@ var Enemy = Actor.extend({
         var distanceY = myPosition.get_y() - playerPosition.get_y();
         var distance = Math.sqrt(distanceX * distanceX, distanceY * distanceY);
 
-        if(Math.abs(distance) < kEnemyPeacefulDistance ) {
+        if((Math.abs(distance) < kEnemyPeacefulDistance)
+            && (this.player.state != GameObjectState.Dead)) {
 
-            switch (this.enemyState) {
+            if(Math.abs(distance) < kEnemyAtackDistance ) {
+                this.attack();
+                console.log("==> attack!!!! <== " + distance);
+            }
+
+                switch (this.enemyState) {
                 case EnemyState.Defence:
                 case EnemyState.Roaming:
                     this.enemyState = EnemyState.Attack;
@@ -95,6 +101,8 @@ var Enemy = Actor.extend({
                     break;
             }
         }
+
+
     }
 
 });

@@ -5,21 +5,37 @@
  </tileset>
  <layer name="main" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJztz7kOgkAUheHrViBQIFDIqriBC/j+T8c/oZlYaDLMdJ7kS+5pbnJE/rGdBZZYYY2NhZ977fawhY8A4czfZxy1HmGHGAlSg5+ddj8/utqSIUdh8PtX1JYGJ5m22Y7acsdDpm3fUqJCjYODfsEVN7QO+gs9Brwd9BHZyQ30
+   eJxjYBgFIx2o0MBMTSS2Dhqf1kARiU0Pv+EDskAsB8TyQKxAA74qEKsBsToQa9CArwvEekCsD8QGNOADAOLBDBE=
   </data>
  </layer>
  <objectgroup name="objects" width="24" height="12">
   <object type="Player" x="29" y="588" width="85" height="116"/>
-  <object type="Enemy" x="1089" y="618" width="84" height="70"/>
+  <object type="Enemy" x="222" y="602" width="32" height="30"/>
+  <object type="Enemy" x="221" y="643" width="32" height="30"/>
+  <object type="Enemy" x="288" y="639" width="32" height="30"/>
+  <object type="Enemy" x="277" y="590" width="32" height="30"/>
+  <object type="Enemy" x="257" y="628" width="32" height="30"/>
+  <object type="Enemy" x="191" y="591" width="32" height="30"/>
+  <object type="Enemy" x="190" y="632" width="32" height="30"/>
+  <object type="Enemy" x="246" y="579" width="32" height="30"/>
+  <object type="Enemy" x="283" y="661" width="32" height="30"/>
+  <object type="Enemy" x="217" y="624" width="32" height="30"/>
+  <object type="Enemy" x="216" y="665" width="32" height="30"/>
+  <object type="Enemy" x="272" y="612" width="32" height="30"/>
  </objectgroup>
  <layer name="tree" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJztyqcOgEAUBVFq6IImKIZi6Pz/1zECAWQJhLVMcsS7eYry9zUVGnQYMAW7TA5cePARCHaZQkSIkSAV7DJlyFGgvNllqlCjQXuzP2XBPjjeHXoMGPf/6/53bsKMBeuL/w2/lQTI
+   eJztyjcOgDAQRFGTClJBcEFoCA3h/ufjNzSWLLRoS4/0mtE3JuzvIsRIkCJT7nMUKFGhVu4btOjQwyr3A0ZMmD/ad5J+wYoNu/NLet8OnLhwO7+kD/PvAbikBLg=
+  </data>
+ </layer>
+ <layer name="grass" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DkAnYaYg46+mOoAgDjdACq
   </data>
  </layer>
  <layer name="bush1" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUYAN8QMwPxAJQjE2cEiAGxOJALAHF2MSHOwAALD8BDQ==
+   eJxjYBgFo2AUYAN8QMwPxAJQjE0cnx5CQAyIxYFYAoqxiePTMxwAAJfnAX8=
   </data>
  </layer>
  <layer name="bush2" width="24" height="12">
@@ -29,6 +45,6 @@
  </layer>
  <objectgroup name="collision" width="24" height="12">
   <object x="548" y="375" width="76" height="201"/>
-  <object x="931" y="376" width="76" height="201"/>
+  <object x="936" y="357" width="76" height="201"/>
  </objectgroup>
 </map>
