@@ -100,6 +100,9 @@ var Actor = GameObject.extend({
 
         this._idleFrameName = "_idle";
 
+        this._filterCategory = EntityFilterCategory.Actor;
+        this._filterMask = 0xffff & ~EntityFilterCategory.Actor;
+
         this._super(b2world, properties);
 
     },
@@ -115,6 +118,11 @@ var Actor = GameObject.extend({
         this._attackTime -= delta;
         if (this._attackTime < 0)
             this._attackTime = 0;
+
+        if (this.node) {
+            var zOrder = kZOrderBase - this.node.getPosition().y;
+            this.node.getParent().reorderChild(this.node, zOrder);
+        }
 
         if (this.automaticMovement) {
 

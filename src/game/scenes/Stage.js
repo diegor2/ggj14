@@ -55,14 +55,8 @@ var Stage = BaseLayer.extend({
             this._tiledMap.getMapSize().height * this._tiledMap.getTileSize().height
         );
 
-        var mainBatchNodeTexture = this._mainBatchNode.getTexture();
-		
-//		if (mainBatchNodeTexture.setAliasTexParameters) {
-//			mainBatchNodeTexture.setAliasTexParameters();
-//			this._tiledMap.getLayer("main").getTexture().setAliasTexParameters();
-//        }
-
         this._mainLayer.addChild(this._tiledMap);
+        this._mainLayer.addChild(this._mainBatchNode);
 
         this._bgNode = cc.Sprite.create(img_Bg);
         this._bgNode.setAnchorPoint(cc.p(0, 0));
@@ -481,5 +475,3 @@ var StageScene = cc.Scene.extend({
     }
 
 });
-
-        this._mainLayer.addChild(this._mainBatchNode);
