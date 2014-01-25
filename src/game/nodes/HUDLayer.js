@@ -70,14 +70,14 @@ var HUDLayer = cc.Layer.extend({
 
     update: function(delta) {
 
-        var bonesChanged = this._bonePreviousCount != this._player.bones;
-        var cookiesChanged = this._cookiePreviousCount != this._player.cookies;
+        var bonesChanged = this._bonePreviousCount != 0;
+        var cookiesChanged = this._cookiePreviousCount != 0;
 
-        this._boneLabel.setString(this._player.bones.toFixed(0));
-        this._cookieLabel.setString(this._player.cookies.toFixed(0));
+        this._boneLabel.setString("0");
+        this._cookieLabel.setString("0");
 
-        this._bonePreviousCount = this._player.bones;
-        this._cookiePreviousCount = this._player.cookies;
+        this._bonePreviousCount = 0;
+        this._cookiePreviousCount = 0;
 
         var offset = 30;
 

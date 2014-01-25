@@ -10,15 +10,13 @@ var kMaxUpdatesPerFrame = 10;
 var kIdleActionTag = 400;
 var kWalkActionTag = 500;
 var kWalkForce = 3.0;
-var kJumpForce = 8.0;
-var kJumpTime = 0.2;
 
-var kPlayerDamageTime = 0.3;
-var kPlayerDamageImpulseX = 0.7;
-var kPlayerDamageImpulseY = 0.5;
-var kStopVelocityMultiplier = 0.75;
-var kStopVelocityMultiplierWhenDamaged = 0.95;
+var kPlayerDamageTime = 0.5;
+var kPlayerDamageImpulseX = 1.1;
+var kStopVelocityMultiplier = 0.6;
+var kStopVelocityMultiplierWhenDamaged = 0.7;
 var kEnemyDirectionChangeTime = 0.25;
+var kDefaultAttackTime = 0.2;
 
 var kEnemyPeacefulDistance = 2.0;
 
@@ -39,7 +37,8 @@ var StageState = {
 
 var GameObjectState = {
     Standing: 0,
-    Dead: 1
+    Dying: 1,
+    Dead: 2
 };
 
 var EnemyState = {
@@ -61,7 +60,6 @@ var ContactType = {
     Unknown: 7,
     Floor: 8,
     Body: 9,
-    Foot: 10,
-    Head: 11,
-    EnemyLimit: 12
+    RightHitArea: 10,
+    LeftHitArea: 10
 };

@@ -105,28 +105,10 @@ var Stage = BaseLayer.extend({
                     this._createEnemy(gameObjectProperties);
                     break;
 
-                case "Cookie":
-                    this._createGameObject(Cookie, gameObjectProperties);
-                    break;
-
-                case "Bone":
-                    this._createGameObject(Bone, gameObjectProperties);
-                    break;
-
                 case "LevelEnd":
                     this._createGameObject(LevelEnd, gameObjectProperties);
                     break;
 
-                case "EnemyLimit":
-
-                    var enemyLimit = new ContactContainer;
-                    enemyLimit.type = ContactType.EnemyLimit;
-
-                    var theFixture = this._createStaticBody(gameObjectProperties);
-                    theFixture.SetSensor(true);
-                    theFixture.customData = enemyLimit;
-
-                    break;
             }
 
         }
@@ -141,8 +123,8 @@ var Stage = BaseLayer.extend({
             floorFixture.customData = floorContact;
         }
 
-        for (var i in this._enemies) {
-            this._enemies.player = this._player;
+        for (var i = 0; i < this._enemies.length; i++) {
+            this._enemies[i].player = this._player;
         }
 
         this._mainBatchNode.addChild(this._player.node);
@@ -236,7 +218,7 @@ var Stage = BaseLayer.extend({
 
         var gameObject = this._createGameObject(Enemy, properties);
         gameObject.player = this._player;
-		gameObject
+
         this._enemies.push(gameObject);
 
         return gameObject;
@@ -458,6 +440,8 @@ var Stage = BaseLayer.extend({
         if (this._buttonAPressed)
             return;
         this._buttonAPressed = true;
+
+        this._player.attack();
 
     },
 
