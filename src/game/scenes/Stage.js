@@ -7,6 +7,8 @@ var Stage = BaseLayer.extend({
 
     _buttonLeftPressed: false,
     _buttonRightPressed: false,
+    _buttonUpPressed: false,
+    _buttonDownPressed: false,
     _buttonAPressed: false,
 
     // "private" properties
@@ -248,7 +250,27 @@ var Stage = BaseLayer.extend({
 
             this._b2world.Step(kFixedStepTime, 5, 1);
 
-            this._player.movingState = this._movingStates[this._movingStates.length - 1];
+            var didFindHorizontalMovingState = false;
+            var didFindVerticalMovingState = false;
+            var movingStatesLength = this._movingStates.length;
+
+            while (movingStatesLength--) {
+                var aMovingState = this._movingStates[movingStatesLength];
+                if (!didFindHorizontalMovingState && (aMovingState == MovingState.Left || aMovingState == MovingState.Right)) {
+                    this._player.horizontalMovingState = aMovingState;
+                    didFindHorizontalMovingState = true;
+                }
+                if (!didFindVerticalMovingState && (aMovingState == MovingState.Up || aMovingState == MovingState.Down)) {
+                    this._player.verticalMovingState = aMovingState;
+                    didFindVerticalMovingState = true;
+                }
+            }
+
+            if (!didFindHorizontalMovingState)
+                this._player.horizontalMovingState = MovingState.Stopped;
+            if (!didFindVerticalMovingState)
+                this._player.verticalMovingState = MovingState.Stopped;
+
             this._player.update(kFixedStepTime);
             this._hudLayer.update(kFixedStepTime);
 
@@ -311,6 +333,50 @@ var Stage = BaseLayer.extend({
 
     },
 
+    buttonUp: function(pressed) {
+
+        if (pressed) {
+
+            if (this._buttonUpPressed)
+                return;
+            this._buttonUpPressed = true;
+
+            this._movingStates.push(MovingState.Up);
+
+        } else {
+
+            this._buttonUpPressed = false;
+
+            var movingStateIndex = this._movingStates.indexOf(MovingState.Up);
+            if (movingStateIndex != -1)
+                this._movingStates.splice(movingStateIndex, 1);
+
+        }
+
+    },
+
+    buttonDown: function(pressed) {
+
+        if (pressed) {
+
+            if (this._buttonDownPressed)
+                return;
+            this._buttonDownPressed = true;
+
+            this._movingStates.push(MovingState.Down);
+
+        } else {
+
+            this._buttonDownPressed = false;
+
+            var movingStateIndex = this._movingStates.indexOf(MovingState.Down);
+            if (movingStateIndex != -1)
+                this._movingStates.splice(movingStateIndex, 1);
+
+        }
+
+    },
+
     buttonLeft: function(pressed) {
 
         if (pressed) {
@@ -359,16 +425,12 @@ var Stage = BaseLayer.extend({
 
         if (!pressed) {
             this._buttonAPressed = false;
-
-            this._player.finishJump();
             return;
         }
 
         if (this._buttonAPressed)
             return;
         this._buttonAPressed = true;
-
-        this._player.jump();
 
     },
 

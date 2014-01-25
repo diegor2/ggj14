@@ -3,7 +3,7 @@ var kMaxLevel = 2;
 var kTmxPrefix = "stage";
 
 var PTM_RATIO = 32.0;
-var kGravity = (-PTM_RATIO * 1.0);
+var kGravity = (-PTM_RATIO * 0.0);
 var kFixedStepTime = 0.0166666;
 var kMaxUpdatesPerFrame = 10;
 
@@ -23,7 +23,9 @@ var kEnemyDirectionChangeTime = 0.25;
 var MovingState = {
     Stopped: 0,
     Left: 1,
-    Right: 2
+    Right: 2,
+    Up: 3,
+    Down: 4
 };
 
 var StageState = {
