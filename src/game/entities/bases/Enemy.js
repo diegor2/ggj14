@@ -7,7 +7,7 @@ var Enemy = Actor.extend({
     _directionChangeMaxIdleTime: 0,
     _lastMovingState: MovingState.Right,
     player: null,
-	state: EnemyState.Defence,
+	enemyState: EnemyState.Defence,
 	
     _addFixtures: function() {
 
@@ -114,30 +114,29 @@ var Enemy = Actor.extend({
 
 		var myPosition = this.b2body.GetPosition();
 		var playerPosition = this.player.b2body.GetPosition();
-        var distance = myPosition.get_x() - playerPosition.get_x();
-
-        console.log("myPosition " + myPosition.get_x() + " " + myPosition.get_y());
-        console.log("playerPosition " + playerPosition.get_x() + " " + playerPosition.get_y());
-        console.log("distance " + distance);
+        var distanceX = myPosition.get_x() - playerPosition.get_x();
+        var distanceY = myPosition.get_y() - playerPosition.get_y();
+        var distance = Math.sqrt(distanceX * distanceX, distanceY * distanceY);
 
         if(Math.abs(distance) < kEnemyPeacefulDistance ) {
 
-            switch (this.state) {
+            switch (this.enemyState) {
                 case EnemyState.Defence:
                 case EnemyState.Roaming:
-                    this.state = EnemyState.Attack;
-                    this.horizontalMovingState = (distance > 0) ? MovingState.Left : MovingState.Right;
+                    this.enemyState = EnemyState.Attack;
+                    this.horizontalMovingState = (distanceX > 0) ? MovingState.Left : MovingState.Right;
+                    this.verticalMovingState = (distanceY > 0) ? MovingState.Up: MovingState.Down;
                     break;
                 case EnemyState.Attack:
                     break;
             }
         } else {
-            switch (this.state) {
+            switch (this.enemyState) {
                 case EnemyState.Defence:
                 case EnemyState.Roaming:
                     break;
                 case EnemyState.Attack:
-                    this.state = EnemyState.Defence;
+                    this.enemyState = EnemyState.Defence;
                     this.horizontalMovingState = MovingState.Stopped;
                     break;
             }
