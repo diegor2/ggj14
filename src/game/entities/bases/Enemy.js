@@ -6,6 +6,7 @@ var Enemy = Actor.extend({
     _directionChangeIdleTime: 0,
     _directionChangeMaxIdleTime: 0,
     _lastMovingState: MovingState.Right,
+    player: null,
 
     _addFixtures: function() {
 

@@ -23,6 +23,7 @@ var Stage = BaseLayer.extend({
     _hudLayer: null,
     _movingStates: null,
     _gameObjects: null,
+    _enemies: null,
     _player: null,
     _b2world: null,
     _frameAccumulator: 0,
@@ -37,6 +38,7 @@ var Stage = BaseLayer.extend({
         this._level = level;
         this._movingStates = [MovingState.Stopped];
         this._gameObjects = [];
+        this._enemies = [];
 
         cc.SpriteFrameCache.getInstance().addSpriteFrames(plist_Chars);
 
@@ -100,7 +102,7 @@ var Stage = BaseLayer.extend({
                     break;
 
                 case "Enemy":
-                    this._createGameObject(Enemy, gameObjectProperties);
+                    this._createEnemy(gameObjectProperties);
                     break;
 
                 case "Cookie":
@@ -137,6 +139,11 @@ var Stage = BaseLayer.extend({
 
             var floorFixture = this._createStaticBody(collisionProperties);
             floorFixture.customData = floorContact;
+        }
+
+        for (var i = 0; i < this._enemies.length; i++) {
+            if (this._enemies[i].state == GameObjectState.Dead)
+                this._enemies.player = this._player;
         }
 
         this._mainBatchNode.addChild(this._player.node);
@@ -222,6 +229,18 @@ var Stage = BaseLayer.extend({
         this._gameObjects.push(gameObject);
         if (gameObject.node)
             this._mainBatchNode.addChild(gameObject.node);
+
+        return gameObject;
+    },
+
+    _createEnemy: function(properties) {
+
+        var gameObject = this._createGameObject(Enemy, properties);
+        gameObject.player = this._player;
+
+        this._enemies.push(gameObject);
+
+        return gameObject;
     },
 
 /*
@@ -278,9 +297,18 @@ var Stage = BaseLayer.extend({
                 this._gameObjects[g].update(kFixedStepTime);
             }
 
-            for (var i = 0; i < this._gameObjects.length; i++) {
+            var i;
+
+            for (i = 0; i < this._gameObjects.length; i++) {
                 if (this._gameObjects[i].state == GameObjectState.Dead) {
                     this._gameObjects.splice(i, 1);
+                    i--;
+                }
+            }
+
+            for (i = 0; i < this._enemies.length; i++) {
+                if (this._enemies[i].state == GameObjectState.Dead) {
+                    this._enemies.splice(i, 1);
                     i--;
                 }
             }

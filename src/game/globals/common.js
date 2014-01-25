@@ -37,9 +37,7 @@ var StageState = {
 
 var GameObjectState = {
     Standing: 0,
-    JumpStarting: 1,
-    Jumping: 2,
-    Dead: 3
+    Dead: 1
 };
 
 var GameObjectType  = {

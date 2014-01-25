@@ -63,7 +63,6 @@ var Player = Actor.extend({
                 if (this._damageTime > 0)
                     return;
                 this._damageTime = kPlayerDamageTime;
-                this._jumpTime = 0;
                 this.didHit = true;
 
                 var throwToLeft = gameObject.b2body.GetPosition().get_x() > this.b2body.GetPosition().get_x();
@@ -72,16 +71,6 @@ var Player = Actor.extend({
                 this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
                 this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
-                break;
-
-            case GameObjectType.Bone:
-                gameObject.die();
-                this.bones++;
-                break;
-
-            case GameObjectType.Cookie:
-                gameObject.die();
-                this.cookies++;
                 break;
 
             case GameObjectType.LevelEnd:

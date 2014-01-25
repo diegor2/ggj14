@@ -13,20 +13,6 @@ var Actor = GameObject.extend({
 
     // "private" methods
 
-    _isHittingHead: function() {
-
-        var contacts = this._contacts[ContactType.Head];
-
-        for (var c in contacts) {
-            var contactContainer = contacts[c].contactContainer;
-
-            if (contactContainer.type == ContactType.Floor)
-                return true;
-        }
-
-        return false;
-    },
-
     _updateAnimation: function() {
 
         if (this.state == GameObjectState.Standing) {
