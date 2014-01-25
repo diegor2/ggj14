@@ -21,7 +21,11 @@ var Actor = GameObject.extend({
         if (this.state == GameObjectState.Standing) {
             if (this.horizontalMovingState == MovingState.Left || this.horizontalMovingState == MovingState.Right || this.verticalMovingState == MovingState.Up || this.verticalMovingState == MovingState.Down) {
 
-                var speed = Math.abs(this.b2body.GetLinearVelocity().get_x()) * 6;
+                var vel = this.b2body.GetLinearVelocity();
+                var velX = Math.abs(vel.get_x());
+                var velY = Math.abs(vel.get_y());
+                var baseSpeedVal = velX > velY ? velX : velY;
+                var speed = Math.abs(baseSpeedVal) * 6;
                 var walkAction = this.node.getActionByTag(kWalkActionTag);
 
                 if (!walkAction) {

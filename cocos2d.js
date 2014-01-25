@@ -59,6 +59,7 @@
             'src/game/nodes/HUDLayer.js',
             'src/game/scenes/bases/BaseLayer.js',
             'src/game/scenes/Stage.js',
+            'src/game/scenes/Dialogue.js',
             'src/game/scenes/MainScene.js'
         ]
     };

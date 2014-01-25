@@ -334,7 +334,7 @@ var Stage = BaseLayer.extend({
         if (nextLevel > kMaxLevel)
             cc.Director.getInstance().replaceScene(new MainScene());
         else
-            cc.Director.getInstance().replaceScene(new StageScene(nextLevel));
+            cc.Director.getInstance().replaceScene(new DialogueScene(nextLevel));
 
     },
 
