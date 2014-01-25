@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="24" height="12" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="tileds" tilewidth="64" tileheight="64">
   <image source="tileds.png" width="512" height="394"/>
  </tileset>
- <layer name="Camada de Tiles 1" width="16" height="12">
+ <layer name="main" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJyt0LcOgwAMRVGaIlGWJCwkdAgllPD/X5c7MHmyLJ50ZN3VjnPNXHjwEShaLkSEGImi5e544IlU0XIZXngjV7RcgxYdekXLzfhiwapoOev/b+e1/r9AiQq1oT8YMGIy9IYdPxyG/gMsUg4v
+   eJztz7kOgkAUheHrViBQIFDIqriBC/j+T8c/oZlYaDLMdJ7kS+5pbnJE/rGdBZZYYY2NhZ977fawhY8A4czfZxy1HmGHGAlSg5+ddj8/utqSIUdh8PtX1JYGJ5m22Y7acsdDpm3fUqJCjYODfsEVN7QO+gs9Brwd9BHZyQ30
   </data>
  </layer>
- <objectgroup name="objects" width="16" height="12">
-  <object type="Player" x="388" y="300" width="85" height="116"/>
-  <object type="Enemy" x="367" y="515" width="179" height="63"/>
+ <objectgroup name="objects" width="24" height="12">
+  <object type="Player" x="29" y="588" width="85" height="116"/>
+  <object type="Enemy" x="1089" y="618" width="84" height="70"/>
  </objectgroup>
- <objectgroup name="collision" width="16" height="12">
-  <object x="615" y="304" width="95" height="65"/>
+ <layer name="tree" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJztyqcOgEAUBVFq6IImKIZi6Pz/1zECAWQJhLVMcsS7eYry9zUVGnQYMAW7TA5cePARCHaZQkSIkSAV7DJlyFGgvNllqlCjQXuzP2XBPjjeHXoMGPf/6/53bsKMBeuL/w2/lQTI
+  </data>
+ </layer>
+ <layer name="bush1" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUYAN8QMwPxAJQjE2cEiAGxOJALAHF2MSHOwAALD8BDQ==
+  </data>
+ </layer>
+ <layer name="bush2" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU4AN8QMwPxAIExMgFYkAsDsQSBMSGIwAA+hgA5Q==
+  </data>
+ </layer>
+ <objectgroup name="collision" width="24" height="12">
+  <object x="548" y="375" width="76" height="201"/>
+  <object x="931" y="376" width="76" height="201"/>
  </objectgroup>
 </map>
