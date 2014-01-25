@@ -16,7 +16,7 @@ var g_resources = [
 
     //fnt
     {src:fnt_Main},
-    {src:fnt_MainImg},
+    {src:fnt_MainImg}
 
     //tmx
 

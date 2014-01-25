@@ -55,8 +55,6 @@ var Stage = BaseLayer.extend({
             this._tiledMap.getMapSize().height * this._tiledMap.getTileSize().height
         );
 
-        var mainBatchNodeTexture = this._mainBatchNode.getTexture();
-
         this._mainLayer.addChild(this._tiledMap);
         this._mainLayer.addChild(this._mainBatchNode);
 
@@ -129,7 +127,7 @@ var Stage = BaseLayer.extend({
         this._mainBatchNode.addChild(this._player.node);
 
         this._hudLayer = new HUDLayer();
-        this._hudLayer.init(this._player);
+        this._hudLayer.init(this._player, level);
 
         this.addChild(this._hudLayer);
         this.updateMapPosition();

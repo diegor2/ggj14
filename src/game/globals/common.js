@@ -7,10 +7,11 @@ var kGravity = (-PTM_RATIO * 0.0);
 var kFixedStepTime = 0.0166666;
 var kMaxUpdatesPerFrame = 10;
 
+var kZOrderBase = 200;
 var kIdleActionTag = 400;
 var kWalkActionTag = 500;
-var kWalkForce = 3.0;
 
+var kWalkForce = 3.0;
 var kPlayerDamageTime = 0.5;
 var kPlayerDamageImpulseX = 1.1;
 var kStopVelocityMultiplier = 0.6;
@@ -46,7 +47,7 @@ var GameObjectState = {
 var EnemyState = {
     Defence: 0,
     Roaming: 1,
-    Attack: 2,
+    Attack: 2
 };
 
 var GameObjectType  = {
@@ -64,4 +65,9 @@ var ContactType = {
     Body: 9,
     RightHitArea: 10,
     LeftHitArea: 10
+};
+
+var EntityFilterCategory = {
+    Actor: 0x0001,
+    Boundary: 0x0002
 };

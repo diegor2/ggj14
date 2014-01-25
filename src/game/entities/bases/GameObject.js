@@ -28,6 +28,8 @@ var GameObject = cc.Class.extend({
     _contacts: null,
     _isb2bodyDestroyed: false,
     _initialPosition: null,
+    _filterCategory: null,
+    _filterMask: null,
 
     // private methods
 
@@ -94,6 +96,12 @@ var GameObject = cc.Class.extend({
         fixtureDef.set_friction(0);
         fixtureDef.set_restitution(0);
         fixtureDef.set_isSensor(this._isSensor);
+
+        if (this._filterCategory !== null)
+            fixtureDef.get_filter().set_categoryBits(this._filterCategory);
+
+        if (this._filterMask !== null)
+            fixtureDef.get_filter().set_maskBits(this._filterMask);
 
         var aFixture = this.b2body.CreateFixture(fixtureDef);
         aFixture.customData = contactContainer;
