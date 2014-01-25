@@ -76,12 +76,13 @@ var Enemy = Actor.extend({
                 case EnemyState.Defence:
                 case EnemyState.Roaming:
                     this.enemyState = EnemyState.Attack;
-                    this.horizontalMovingState = (distanceX > 0) ? MovingState.Left : MovingState.Right;
-                    this.verticalMovingState = (distanceY > 0) ? MovingState.Up: MovingState.Down;
                     break;
                 case EnemyState.Attack:
+                    this.horizontalMovingState = (distanceX > 0) ? MovingState.Left : MovingState.Right;
+                    this.verticalMovingState = (distanceY < 0) ? MovingState.Up: MovingState.Down;
                     break;
             }
+
         } else {
             switch (this.enemyState) {
                 case EnemyState.Defence:
@@ -90,6 +91,7 @@ var Enemy = Actor.extend({
                 case EnemyState.Attack:
                     this.enemyState = EnemyState.Defence;
                     this.horizontalMovingState = MovingState.Stopped;
+                    this.verticalMovingState = MovingState.Stopped;
                     break;
             }
         }
