@@ -1,4 +1,4 @@
-var img_Tileset = "tiles.png";
+var img_Tileset = "tileds.png";
 var img_Bg = "castle.png";
 var img_Chars = "characters.png";
 var plist_Chars = "characters.plist";
