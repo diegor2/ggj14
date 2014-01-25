@@ -18,7 +18,7 @@ var Stage = BaseLayer.extend({
     _tileMapSize: null,
     _bgSize: null,
     _contactListener: null,
-    _bgLayer: null,
+    _bgNode: null,
     _mainLayer: null,
     _mainBatchNode: null,
     _tiledMap: null,
@@ -45,7 +45,6 @@ var Stage = BaseLayer.extend({
         cc.SpriteFrameCache.getInstance().addSpriteFrames(plist_Chars);
 
         this._contactListener = createContactListener();
-        this._bgLayer = cc.Layer.create();
         this._mainLayer = cc.Layer.create();
         this._mainBatchNode = cc.SpriteBatchNode.create(img_Chars);
         this._tiledMap = cc.TMXTiledMap.create(kTmxPrefix + level + ".tmx");
@@ -55,7 +54,6 @@ var Stage = BaseLayer.extend({
             this._tiledMap.getMapSize().width * this._tiledMap.getTileSize().width,
             this._tiledMap.getMapSize().height * this._tiledMap.getTileSize().height
         );
-        this._bgSize = this._bgLayer.getContentSize();
 
         var mainBatchNodeTexture = this._mainBatchNode.getTexture();
 		
@@ -67,11 +65,11 @@ var Stage = BaseLayer.extend({
         this._mainLayer.addChild(this._tiledMap);
         this._mainLayer.addChild(this._mainBatchNode);
 
-        var skyLayer = cc.LayerGradient.create(cc.c4b(123, 213, 242, 255), cc.c4b(200, 150, 0, 255));
-        skyLayer.setContentSize(cc.SizeMake(2000, 500));
+        this._bgNode = cc.Sprite.create(img_Bg);//.addChild(skyLayer);
+        this._bgNode.setAnchorPoint(cc.p(0, 0));
+        this._bgSize = this._bgNode.getContentSize();
 
-        this._bgLayer.addChild(skyLayer);
-        this.addChild(this._bgLayer);
+        this.addChild(this._bgNode);
         this.addChild(this._mainLayer);
 
         var gravity = new b2Vec2(0, kGravity);
@@ -320,12 +318,15 @@ var Stage = BaseLayer.extend({
 
         this._mainLayer.setPosition(viewPoint);
 
-        var widthDiff = this._tileMapSize.width - this._bgSize.width;
+        var mapWidthDiff = this._winSize.width - this._tileMapSize.width;
+        var bgWidthDiff = this._winSize.width - this._bgSize.width;
+        var mapHeightDiff = this._winSize.height - this._tileMapSize.height;
+        var bgHeightDiff = this._winSize.height - this._bgSize.height;
 
-        var bgX = (viewPoint.x / this._tileMapSize.width) * this._bgSize.width;
-        var bgY = (viewPoint.y / this._tileMapSize.height) * this._bgSize.height;
+        var bgX = (viewPoint.x / mapWidthDiff) * bgWidthDiff;
+        var bgY = (viewPoint.y / mapHeightDiff) * bgHeightDiff;
 
-        this._bgLayer.setPosition(cc.p(bgX, bgY));
+        this._bgNode.setPosition(cc.p(bgX, bgY));
 
     },
 
