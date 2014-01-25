@@ -18,6 +18,8 @@ var kStopVelocityMultiplierWhenDamaged = 0.7;
 var kEnemyDirectionChangeTime = 0.25;
 var kDefaultAttackTime = 0.2;
 
+var kEnemyPeacefulDistance = 2.0;
+
 var MovingState = {
     Stopped: 0,
     Left: 1,
@@ -37,6 +39,12 @@ var GameObjectState = {
     Standing: 0,
     Dying: 1,
     Dead: 2
+};
+
+var EnemyState = {
+    Defence: 0,
+    Roaming: 1,
+    Attack: 2,
 };
 
 var GameObjectType  = {

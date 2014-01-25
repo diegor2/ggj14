@@ -124,7 +124,7 @@ var Stage = BaseLayer.extend({
         }
 
         for (var i = 0; i < this._enemies.length; i++) {
-            this._enemies.player = this._player;
+            this._enemies[i].player = this._player;
         }
 
         this._mainBatchNode.addChild(this._player.node);

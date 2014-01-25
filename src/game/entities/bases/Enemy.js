@@ -7,7 +7,8 @@ var Enemy = Actor.extend({
     _directionChangeMaxIdleTime: 0,
     _lastMovingState: MovingState.Right,
     player: null,
-
+	state: EnemyState.Defence,
+	
     _addFixtures: function() {
 
         var width = this.node.getContentSize().width * 0.1;
@@ -95,6 +96,8 @@ var Enemy = Actor.extend({
             this._directionChangeTime -= delta;
         }
 
+        this.reactToPlayer();
+
         this._super(delta);
 
     },
@@ -119,6 +122,40 @@ var Enemy = Actor.extend({
         this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
         this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
-    }
+    },
+    
+    reactToPlayer: function () {
+
+		var myPosition = this.b2body.GetPosition();
+		var playerPosition = this.player.b2body.GetPosition();
+        var distance = myPosition.get_x() - playerPosition.get_x();
+
+        console.log("myPosition " + myPosition.get_x() + " " + myPosition.get_y());
+        console.log("playerPosition " + playerPosition.get_x() + " " + playerPosition.get_y());
+        console.log("distance " + distance);
+
+        if(Math.abs(distance) < kEnemyPeacefulDistance ) {
+
+            switch (this.state) {
+                case EnemyState.Defence:
+                case EnemyState.Roaming:
+                    this.state = EnemyState.Attack;
+                    this.horizontalMovingState = (distance > 0) ? MovingState.Left : MovingState.Right;
+                    break;
+                case EnemyState.Attack:
+                    break;
+            }
+        } else {
+            switch (this.state) {
+                case EnemyState.Defence:
+                case EnemyState.Roaming:
+                    break;
+                case EnemyState.Attack:
+                    this.state = EnemyState.Defence;
+                    this.horizontalMovingState = MovingState.Stopped;
+                    break;
+            }
+        }
+    },
 
 });
