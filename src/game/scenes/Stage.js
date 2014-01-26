@@ -290,6 +290,19 @@ var Stage = BaseLayer.extend({
                     i--;
                 }
             }
+
+            if (this._player.state == GameObjectState.Dead) {
+                cc.Director.getInstance().replaceScene(new StageScene(1));
+                this._state = StageState.Ended;
+                this.unscheduleUpdate();
+                return;
+            }
+
+            if (this._enemies.length == 0) {
+                this.end();
+                return;
+            }
+
         }
 
         this.updateMapPosition();
