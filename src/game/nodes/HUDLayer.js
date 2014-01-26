@@ -13,6 +13,11 @@ var HUDLayer = cc.Layer.extend({
 
         this._lifeHalfs = [];
 
+        if (level > 3)
+            level = 3;
+
+        var imageSpace = level == 1 ? 20 : 0;
+
         for (var i = 0; i < kPlayerMaxLife; i++) {
 
             var suffix = i % 2 == 0 ? "a" : "b";
@@ -20,7 +25,7 @@ var HUDLayer = cc.Layer.extend({
             var imageWidth = lifeImage.getContentSize().width;
 
             lifeImage.setAnchorPoint(cc.p(0, 1));
-            lifeImage.setPosition(cc.p(10 + i * imageWidth + Math.floor(i / 2) * 10, winSize.height - 10));
+            lifeImage.setPosition(cc.p(imageSpace + i * imageWidth + Math.floor(i / 2) * imageSpace, winSize.height - 10));
 
             batchNode.addChild(lifeImage);
             this._lifeHalfs.push(lifeImage);
