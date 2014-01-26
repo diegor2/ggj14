@@ -63,7 +63,8 @@ var ContactType = {
     Floor: 8,
     Body: 9,
     RightHitArea: 10,
-    LeftHitArea: 10
+    LeftHitArea: 11,
+    DamageArea: 12
 };
 
 var EntityFilterCategory = {

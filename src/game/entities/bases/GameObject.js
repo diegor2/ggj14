@@ -135,7 +135,7 @@ var GameObject = cc.Class.extend({
 
         this._contacts = {};
 
-        var contactTypes = [ContactType.Body, ContactType.LeftHitArea, ContactType.RightHitArea];
+        var contactTypes = [ContactType.Body, ContactType.LeftHitArea, ContactType.RightHitArea, ContactType.DamageArea];
 
         for (var c in contactTypes) {
             this._contacts[contactTypes[c]] = [];
@@ -278,7 +278,7 @@ var GameObject = cc.Class.extend({
         for(var c in contacts)
         {
             var contactContainer = contacts[c].contactContainer;
-            if(!contactContainer || contactContainer.type != ContactType.Body || !(contactContainer.gameObject instanceof type) || contactContainer.gameObject.state == GameObjectState.Dead)
+            if(!contactContainer || contactContainer.type != ContactType.DamageArea || !(contactContainer.gameObject instanceof type) || contactContainer.gameObject.state == GameObjectState.Dead)
                 continue;
 
             contactContainer.gameObject.takeHit(this.node.isFlippedX() ? MovingState.Left : MovingState.Right);

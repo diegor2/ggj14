@@ -120,8 +120,11 @@ var Actor = GameObject.extend({
             this._attackTime = 0;
 
         if (this.node) {
-            var zOrder = kZOrderBase - this.node.getPosition().y;
-            this.node.getParent().reorderChild(this.node, zOrder);
+            var parentNode = this.node.getParent();
+            if (parentNode) {
+                var zOrder = kZOrderBase - this.node.getPosition().y;
+                this.node.getParent().reorderChild(this.node, zOrder);
+            }
         }
 
         if (this.automaticMovement) {

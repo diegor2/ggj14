@@ -18,7 +18,7 @@ var Dialogue = BaseLayer.extend({
         var winSize = cc.Director.getInstance().getWinSize();
 
         this._messages = [
-            "Olha soh mamae, to testando esses textos\naqui! Um bagulho doido que doi o zoi!",
+            "Olha só mamãe, tô testando esses textos aqui!\nUm bagulho doido que dói o zói!",
             "LAZARENTO DI MININO!"
         ];
 
