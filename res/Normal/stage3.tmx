@@ -4,20 +4,20 @@
   <property name="bg" value="park.png"/>
  </properties>
  <tileset firstgid="1" name="tileds" tilewidth="64" tileheight="64">
-  <image source="tileds.png" width="512" height="1042"/>
+  <image source="tileds.png" width="512" height="1309"/>
  </tileset>
- <layer name="main" width="48" height="12">
+ <layer name="main" width="48" height="12" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0bsOgkAUhGEQLEQtQCxQUC4qKqi8/9Px021Os+GWuAmTfMmeKaZZy1qyxLzYWMGBi7Wm/7ds4GGLHfaafkxuE2zI+AhwQIijpu+bl/KuxT1FIpxwRqzsy36OZMp76N90GzkKsSH7Of5e/s3QjTcqsSF73X6CC65IDbzveKDE08D7gy9+aAy8WxrbG+Q=
+   eJzt0bsOgkAUhGEQLEQtQCxQGpQG8JUUG4VG5f0rfrrNaTbcEjdhki/ZM8U0a1lLlpgXGys4cLHW9P+WDTxsscNe049JOsGGjI8AB4Q4avq+yZT3TdxTJMIJZ8TKvuznSKK8h/5Nt3HBVWzIfo6/l38zdCNHITZkr9u/44ESTwPvF96oUBt4f/DFD42BdwvlMz/k
   </data>
  </layer>
- <objectgroup name="objects" width="48" height="12">
+ <objectgroup name="objects" width="48" height="12" visible="0">
   <object type="Player" x="29" y="588" width="85" height="116"/>
   <object type="Enemy" x="1792" y="640" width="64" height="64"/>
  </objectgroup>
  <layer name="tree" width="48" height="12">
   <data encoding="base64" compression="zlib">
-   eJztyzcOgDAQBVGTClJBcEFoCA3h/udjaldY8gqKHek1q7/GaJpMEWIkSJEF3kuXo0CJCnXgvXQNWnToYQPvpRswYsL88sd3L9mCFRt25+6z/6oDJy7czt1nr2l/7QGDWgS4
+   eJxjYBgFo2AUjIJRQEuggsRWHDBXkA90kNiaA+aKUTAKqAsA70cAmw==
   </data>
  </layer>
  <layer name="grass" width="48" height="12">
@@ -27,15 +27,15 @@
  </layer>
  <layer name="bush1" width="48" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApQAR8Q8wOxABRjE8enhxhzcbGpAcSAWByIJaAYmzg+PcSYi4s9CoYGAAA5SgLV
+   eJxjYBgFo2AUjIJRMAqGFxADYnEgloBiYgFMDyFz0dUj2zcKhgYAAD32AS4=
   </data>
  </layer>
  <layer name="bush2" width="48" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAqwAz4g5gdiAQJigxWIAbE4EEsQEBsFIw8AACD2AOU=
+   eJxjYBgFo2AUjIJRMApGDhADYnEglhhoh4yCAQUAlAwARg==
   </data>
  </layer>
- <objectgroup name="collision" width="48" height="12">
+ <objectgroup name="collision" width="48" height="12" visible="0">
   <object x="0" y="576">
    <polyline points="0,0 0,192 3072,192 3072,0 0,0"/>
   </object>
