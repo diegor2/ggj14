@@ -3,6 +3,7 @@ var Actor = GameObject.extend({
 
     // public properties
 
+    smokeBatchNode: null,
     horizontalMovingState: MovingState.Stopped,
     verticalMovingState: MovingState.Stopped,
     automaticMovement: true,
@@ -181,6 +182,9 @@ var Actor = GameObject.extend({
 
     attack: function() {
 
+        if (this.state == GameObjectState.Dead || this.state == GameObjectState.Dying)
+            return;
+
         if (this._attackDelay > 0 || this._damageTime > 0)
             return;
         this._attackTime = kDefaultAttackTime;
@@ -196,6 +200,9 @@ var Actor = GameObject.extend({
     },
 
     takeHit: function(direction) {
+
+        if (this.state == GameObjectState.Dead || this.state == GameObjectState.Dying)
+            return;
 
         if (this._damageTime > 0)
             return;
@@ -217,8 +224,20 @@ var Actor = GameObject.extend({
             this._damageFrameCount,
             kPlayerDamageTime / this._damageFrameCount);
 
-        this.node.stopAllActions();
+        if (this.state != GameObjectState.Dead && this.state != GameObjectState.Dying)
+            this.node.stopAllActions();
         this.node.runAction(cc.Animate.create(anim));
+
+    },
+
+    die: function() {
+
+        this._super();
+
+        if (this.smokeBatchNode) {
+            var smokeParticle = cc.ParticleSystem.create(plist_DeathSmoke);
+            this.smokeBatchNode.addChild(smokeParticle);
+        }
 
     }
 

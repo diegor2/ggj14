@@ -29,71 +29,81 @@ var Dialogue = BaseLayer.extend({
 
         switch (nextLevel) {
             case 2:
-                this._messages.push("Olha só mamãe, tô testando esses textos aqui!\nUm bagulho doido que dói o zói!");
-                this._messages.push("LAZARENTO DI MININO!");
-                spriteFrameNames.push("child_idle_1.png");
-                spriteFrameNames.push("child_idle_2.png");
-                bgName = "castle.png";
+                this._messages.push("Son! Stop playing around...");
+                this._messages.push("Care about your future and try not to throw it away.");
+                this._messages.push("You don't need to walk faster than the time, but\nit's necessary to follow it.");
+                //spriteFrameNames.push("child_idle_1.png");
+                //spriteFrameNames.push("child_idle_2.png");
+                bgName = img_Dialogue1Bg;
                 break;
             case 3:
-                this._messages.push("Testando...");
-                this._messages.push("E mais uma vez testando...");
-                spriteFrameNames.push("child_idle_1.png");
-                spriteFrameNames.push("child_idle_2.png");
-                bgName = "castle.png";
+                this._messages.push("Hey!");
+                this._messages.push("Where is the report for today?");
+                this._messages.push("Photos are not enough!\nTry clearing your vision and mature your mind.");
+                //spriteFrameNames.push("child_idle_1.png");
+                //spriteFrameNames.push("child_idle_2.png");
+                bgName = img_Dialogue2Bg;
                 break;
             case 4:
-                this._messages.push("Testando...");
-                this._messages.push("E mais uma vez testando...");
-                spriteFrameNames.push("child_idle_1.png");
-                spriteFrameNames.push("child_idle_2.png");
-                bgName = "castle.png";
+                this._messages.push("What do you see?\nLooks like you today?");
+                this._messages.push("Time passes, everything changes...");
+                this._messages.push("You should look outside.\nBecause, about yourself, no one can help.");
+                //spriteFrameNames.push("child_idle_1.png");
+                //spriteFrameNames.push("child_idle_2.png");
+                bgName = img_Stage4Bg;
                 break;
             case 5:
                 if (win) {
                     this._messages.push("Testando...");
                     this._messages.push("E mais uma vez testando...");
-                    spriteFrameNames.push("child_idle_1.png");
-                    spriteFrameNames.push("child_idle_2.png");
-                    bgName = "castle.png";
+                    //spriteFrameNames.push("child_idle_1.png");
+                    //spriteFrameNames.push("child_idle_2.png");
+                    bgName = img_Stage4Bg;
                 } else {
                     this._messages.push("Testando...");
                     this._messages.push("E mais uma vez testando...");
-                    spriteFrameNames.push("child_idle_1.png");
-                    spriteFrameNames.push("child_idle_2.png");
-                    bgName = "castle.png";
+                    //spriteFrameNames.push("child_idle_1.png");
+                    //spriteFrameNames.push("child_idle_2.png");
+                    bgName = img_Stage4Bg;
                 }
                 break;
         }
 
-        var bg = cc.Sprite.create(bgName);
-        bg.setAnchorPoint(cc.p(0, 0));
-        bg.setPosition(cc.p(0, 0));
+        if (bgName != "") {
 
-        var character = cc.Sprite.createWithSpriteFrameName(spriteFrameNames[0]);
-        character.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+            var bg = cc.Sprite.create(bgName);
+            bg.setAnchorPoint(cc.p(0, 0));
+            bg.setPosition(cc.p(0, 0));
+
+            this.addChild(bg);
+        }
+
+        if (spriteFrameNames.length > 0) {
+
+            var character = cc.Sprite.createWithSpriteFrameName(spriteFrameNames[0]);
+            character.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+            this.addChild(character);
+
+            var anim = cc.Animation.create();
+
+            anim.setDelayPerUnit(0.5);
+            anim.setRestoreOriginalFrame(true);
+
+            for (var i = 0; i < spriteFrameNames.length; i++){
+                var frame = spriteCache.getSpriteFrame(spriteFrameNames[i]);
+                if (frame)
+                    anim.addSpriteFrame(frame);
+            }
+
+            var action = cc.RepeatForever.create(cc.Animate.create(anim));
+            character.runAction(action);
+        }
 
         this._textLabel = cc.LabelBMFont.create("", fnt_Dialogue, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
         this._textLabel.setAnchorPoint(cc.p(0, 1));
         this._textLabel.setPosition(cc.p(20, winSize.height - 30));
 
-        this.addChild(bg);
-        this.addChild(character);
         this.addChild(this._textLabel);
-
-        var anim = cc.Animation.create();
-
-        anim.setDelayPerUnit(0.5);
-        anim.setRestoreOriginalFrame(true);
-
-        for (var i = 0; i < spriteFrameNames.length; i++){
-            var frame = spriteCache.getSpriteFrame(spriteFrameNames[i]);
-            if (frame)
-                anim.addSpriteFrame(frame);
-        }
-
-        var action = cc.RepeatForever.create(cc.Animate.create(anim));
-        character.runAction(action);
 
         this.runAction(cc.Sequence.create([
             cc.DelayTime.create(1),
@@ -145,7 +155,10 @@ var Dialogue = BaseLayer.extend({
         }
 
         if (this._dialogueStep >= this._messages.length) {
-            cc.Director.getInstance().replaceScene(new StageScene(this._nextLevel));
+            if (this._nextLevel <= kMaxLevel)
+                cc.Director.getInstance().replaceScene(new StageScene(this._nextLevel));
+            else
+                cc.Director.getInstance().replaceScene(new TitleScene());
         } else {
             this._isWaitingInput = false;
             this._messageLength = 0;

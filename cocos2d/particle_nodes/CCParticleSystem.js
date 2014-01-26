@@ -1458,7 +1458,9 @@ cc.ParticleSystem = cc.Node.extend(/** @lends cc.ParticleSystem# */{
      */
     initWithFile:function (plistFile) {
         this._plistFile = plistFile;
-        var dict = cc.FileUtils.getInstance().dictionaryWithContentsOfFileThreadSafe(this._plistFile);
+        var fileUtils = cc.FileUtils.getInstance();
+        var fullPath = fileUtils.fullPathForFilename(plistFile);
+        var dict = fileUtils.dictionaryWithContentsOfFileThreadSafe(fullPath);
 
         cc.Assert(dict != null, "Particles: file not found");
 

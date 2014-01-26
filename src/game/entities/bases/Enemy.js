@@ -83,6 +83,9 @@ var Enemy = Actor.extend({
     
     reactToPlayer: function () {
 
+        if (this.state != GameObjectState.Standing)
+        return;
+
 		var myPosition = this.b2body.GetPosition();
 		var playerPosition = this.player.b2body.GetPosition();
         var distanceX = myPosition.get_x() - playerPosition.get_x();
@@ -90,7 +93,7 @@ var Enemy = Actor.extend({
         var distance = Math.sqrt(distanceX * distanceX, distanceY * distanceY);
 
         if ((Math.abs(distance) < kEnemyPeacefulDistance)
-            && (this.player.state != GameObjectState.Dead)) {
+            && (this.player.state != GameObjectState.Dead && this.player.state != GameObjectState.Dying)) {
 
             if (Math.abs(distance) < kEnemyAttackDistance) {
                 this.attack();

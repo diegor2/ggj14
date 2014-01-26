@@ -23,6 +23,7 @@ var Stage = BaseLayer.extend({
     _bgNode: null,
     _mainLayer: null,
     _mainBatchNode: null,
+    _smokeBatchNode: null,
     _tiledMap: null,
     _hudLayer: null,
     _pauseLayer: null,
@@ -61,8 +62,13 @@ var Stage = BaseLayer.extend({
             this._tiledMap.getMapSize().height * this._tiledMap.getTileSize().height
         );
 
+        //var smokeParticle = cc.ParticleSystem.create(plist_DeathSmoke);
+        //this._smokeBatchNode = cc.ParticleBatchNode.createWithTexture(smokeParticle.getTexture());
+        //smokeParticle = null;
+
         this._mainLayer.addChild(this._tiledMap);
         this._mainLayer.addChild(this._mainBatchNode);
+        //this._mainLayer.addChild(this._smokeBatchNode);
 
         var mapProperties = this._tiledMap.getProperties()[0];
 
@@ -264,6 +270,10 @@ var Stage = BaseLayer.extend({
         if (gameObject.node)
             this._mainBatchNode.addChild(gameObject.node);
 
+        if (gameObject instanceof Actor) {
+            gameObject.smokeBatchNode = this._smokeBatchNode;
+        }
+
         return gameObject;
     },
 
@@ -349,14 +359,12 @@ var Stage = BaseLayer.extend({
                 }
 
                 if (this._player.state == GameObjectState.Dead) {
-                    cc.Director.getInstance().replaceScene(new TitleScene());
-                    this._state = StageState.Ended;
-                    this.unscheduleUpdate();
+                    this.end(false);
                     return;
                 }
 
                 if (this._enemies.length == 0) {
-                    this.end();
+                    this.end(true);
                     return;
                 }
 
@@ -394,17 +402,17 @@ var Stage = BaseLayer.extend({
 
     },
 
-    end: function() {
+    end: function(win) {
 
         this._state = StageState.Ended;
         this.unscheduleUpdate();
 
         var nextLevel = this._level + 1;
 
-        if (nextLevel > kMaxLevel)
-            cc.Director.getInstance().replaceScene(new MainScene());
+        if (nextLevel >= kMaxLevel || win)
+            cc.Director.getInstance().replaceScene(new DialogueScene(nextLevel, win));
         else
-            cc.Director.getInstance().replaceScene(new DialogueScene(nextLevel));
+            cc.Director.getInstance().replaceScene(new TitleScene());
 
     },
 

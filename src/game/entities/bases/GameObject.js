@@ -175,10 +175,24 @@ var GameObject = cc.Class.extend({
     },
 
     die: function() {
-        this.state = GameObjectState.Dead;
+        this.state = GameObjectState.Dying;
         this.destroyBody();
-        if (this.node)
-            this.node.removeFromParent(true);
+
+        if (this.node) {
+            this.node.stopAllActions();
+            this.node.runAction(cc.Sequence.create([
+                cc.FadeOut.create(0.5),
+                cc.DelayTime.create(0.5),
+                cc.CallFunc.create(this._finishDying, this)
+            ]));
+        }
+    },
+
+    _finishDying: function() {
+
+        this.state = GameObjectState.Dead;
+        this.node.removeFromParent(true);
+
     },
 
     destroyBody: function() {
@@ -259,7 +273,7 @@ var GameObject = cc.Class.extend({
                 continue;
 
             if(contactContainer.gameObject instanceof GameObject) {
-                if(contactContainer.gameObject.state != GameObjectState.Dead)
+                if(contactContainer.gameObject.state != GameObjectState.Dead && contactContainer.gameObject.state != GameObjectState.Dying)
                     this.handleCollisionWithGameObject(contactContainer.gameObject);
                 continue;
             }
@@ -279,6 +293,9 @@ var GameObject = cc.Class.extend({
 
     _checkAttackOnType: function(type) {
 
+        if (this.state != GameObjectState.Standing)
+            return;
+
         if (this._attackTime <= 0)
             return;
 
@@ -288,7 +305,7 @@ var GameObject = cc.Class.extend({
         for(var c in contacts)
         {
             var contactContainer = contacts[c].contactContainer;
-            if(!contactContainer || contactContainer.type != ContactType.DamageArea || !(contactContainer.gameObject instanceof type) || contactContainer.gameObject.state == GameObjectState.Dead)
+            if(!contactContainer || contactContainer.type != ContactType.DamageArea || !(contactContainer.gameObject instanceof type) || contactContainer.gameObject.state == GameObjectState.Dead || contactContainer.gameObject.state == GameObjectState.Dying)
                 continue;
 
             contactContainer.gameObject.takeHit(this.node.isFlippedX() ? MovingState.Left : MovingState.Right);
