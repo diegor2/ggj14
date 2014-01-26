@@ -42,12 +42,12 @@ var Player = Actor.extend({
         this._spriteFrameName   = "child";
         this._idleFrameName     = "_idle";
         this._runningFrameName  = "_run";
-        this._atackFrameName    = "_attack";
+        this._attackFrameName    = "_attack";
         this._damageFrameName   = "_hit";
 
         this._idleFrameCount    = 2;
         this._runningFrameCount = 4;
-        this._atackFrameCount   = 1;
+        this._attackFrameCount   = 1;
         this._damageFrameCount  = 1;
 
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");

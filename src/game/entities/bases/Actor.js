@@ -34,37 +34,34 @@ var Actor = GameObject.extend({
     _updateAnimation: function() {
 
         if (this.state == GameObjectState.Standing) {
-            if (this.horizontalMovingState == MovingState.Left || this.horizontalMovingState == MovingState.Right || this.verticalMovingState == MovingState.Up || this.verticalMovingState == MovingState.Down) {
+            if (this.horizontalMovingState == MovingState.Left
+                || this.horizontalMovingState == MovingState.Right
+                || this.verticalMovingState == MovingState.Up
+                || this.verticalMovingState == MovingState.Down) {
 
                 var vel = this.b2body.GetLinearVelocity();
                 var velX = Math.abs(vel.get_x());
                 var velY = Math.abs(vel.get_y());
                 var baseSpeedVal = velX > velY ? velX : velY;
                 var speed = Math.abs(baseSpeedVal) * 6;
+
                 var walkAction = this.node.getActionByTag(kWalkActionTag);
-
                 if (!walkAction) {
-
-                    var spriteCache = this._spriteCache;
 
                     var anim = this._loadAnimation(this._spriteFrameName
                         + this._runningFrameName, this._runningFrameCount, 2);
 
                     walkAction = cc.Speed.create(cc.RepeatForever.create(cc.Animate.create(anim)), speed);
                     walkAction.setTag(kWalkActionTag);
-
                     this.node.stopAllActions();
                     this.node.runAction(walkAction);
 
                 } else {
-
                     walkAction.setSpeed(speed);
-
                 }
 
             } else {
                 this._setIdleFrame();
-
             }
         }
     },
@@ -75,8 +72,6 @@ var Actor = GameObject.extend({
 
         if (idleAction)
             return;
-
-        var spriteCache = this._spriteCache;
 
         var anim = this._loadAnimation(this._spriteFrameName
             + this._idleFrameName, this._idleFrameCount, 0.5);
@@ -183,7 +178,19 @@ var Actor = GameObject.extend({
             return;
         this._attackTime = kDefaultAttackTime;
 
+        var attackAction = this.node.getActionByTag(kAttackActionTag);
 
+        if (attackAction)
+            return;
+
+        var anim = this._loadAnimation(this._spriteFrameName
+            + this._attackFrameName, this._attackFrameCount, 0.5);
+
+        attackAction = cc.RepeatForever.create(cc.Animate.create(anim));
+        attackAction.setTag(kAttackActionTag);
+
+        this.node.stopAllActions();
+        this.node.runAction(attackAction);
 
     },
 
