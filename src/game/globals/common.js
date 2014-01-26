@@ -10,21 +10,19 @@ var kMaxUpdatesPerFrame = 10;
 var kZOrderBase = 200;
 var kIdleActionTag = 400;
 var kWalkActionTag = 500;
-var kAttackActionTag = 600;
-var kDamageActionTag = 700;
 
 var kWalkForce = 12.0;
 var kWalkAnimSpeedFactor = 2;
 
-var kPlayerDamageTime = 0.4;
-var kPlayerDamageImpulseX = 120.0;
+var kPlayerDamageTime = 0.3;
+var kPlayerDamageImpulseX = 350.0;
 var kStopVelocityMultiplier = 0.6;
 var kStopVelocityMultiplierWhenDamaged = 0.7;
-var kDefaultAttackTime = 0.3;
+var kDefaultAttackTime = 0.1;
 var kPlayerMaxLife = 10;
-var kEnemyMaxLife = 4;
+var kEnemyMaxLife = 6;
 
-var kEnemyPeacefulDistance = 40.0;
+var kEnemyPeacefulDistance = 30.0;
 var kEnemyAttackDistance = 5;
 
 var MovingState = {

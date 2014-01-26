@@ -8,7 +8,7 @@ var Title = BaseLayer.extend({
 
         var winSize = cc.Director.getInstance().getWinSize();
 
-        var bg = cc.Sprite.create(img_Bg);
+        var bg = cc.Sprite.create(img_Stage1Bg);
         bg.setAnchorPoint(cc.p(0, 0));
         this.addChild(bg);
 

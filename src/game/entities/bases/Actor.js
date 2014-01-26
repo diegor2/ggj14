@@ -33,11 +33,12 @@ var Actor = GameObject.extend({
 
     _updateAnimation: function() {
 
-        if (this.state == GameObjectState.Standing) {
+        if (this.state == GameObjectState.Standing && this._attackTime <= 0 && this._damageTime <= 0) {
             if (this.horizontalMovingState == MovingState.Left
                 || this.horizontalMovingState == MovingState.Right
                 || this.verticalMovingState == MovingState.Up
-                || this.verticalMovingState == MovingState.Down) {
+                || this.verticalMovingState == MovingState.Down
+                ) {
 
                 var vel = this.b2body.GetLinearVelocity();
                 var velX = Math.abs(vel.get_x());
@@ -48,8 +49,9 @@ var Actor = GameObject.extend({
                 var walkAction = this.node.getActionByTag(kWalkActionTag);
                 if (!walkAction) {
 
-                    var anim = this._loadAnimation(this._spriteFrameName
-                        + this._runningFrameName, this._runningFrameCount, 2);
+                    var anim = this._loadAnimation(this._spriteFrameName + this._runningFrameName,
+                        this._runningFrameCount,
+                        2);
 
                     walkAction = cc.Speed.create(cc.RepeatForever.create(cc.Animate.create(anim)), speed);
                     walkAction.setTag(kWalkActionTag);
@@ -174,23 +176,16 @@ var Actor = GameObject.extend({
 
     attack: function() {
 
-        if (this._attackTime > 0)
+        if (this._attackTime > 0 || this._damageTime > 0)
             return;
         this._attackTime = kDefaultAttackTime;
 
-        var attackAction = this.node.getActionByTag(kAttackActionTag);
-
-        if (attackAction)
-            return;
-
-        var anim = this._loadAnimation(this._spriteFrameName
-            + this._attackFrameName, this._attackFrameCount, 0.5);
-
-        attackAction = cc.RepeatForever.create(cc.Animate.create(anim));
-        attackAction.setTag(kAttackActionTag);
+        var anim = this._loadAnimation(this._spriteFrameName + this._attackFrameName,
+            this._attackFrameCount,
+            kDefaultAttackTime / this._attackFrameCount);
 
         this.node.stopAllActions();
-        this.node.runAction(attackAction);
+        this.node.runAction(cc.Animate.create(anim));
 
     },
 
@@ -199,6 +194,7 @@ var Actor = GameObject.extend({
         if (this._damageTime > 0)
             return;
         this._damageTime = kPlayerDamageTime;
+        this._attackTime = 0;
 
         this.life--;
 
@@ -210,21 +206,12 @@ var Actor = GameObject.extend({
         this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
         this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
-        console.log(">>>> DEMAGED <<<<");
-
-        var damageAction = this.node.getActionByTag(kDamageActionTag);
-
-        if (damageAction)
-            return;
-
-        var anim = this._loadAnimation(this._spriteFrameName
-            + this._damageFrameName, this._damageFrameCount, 0.5);
-
-        damageAction = cc.RepeatForever.create(cc.Animate.create(anim));
-        damageAction.setTag(kAttackActionTag);
+        var anim = this._loadAnimation(this._spriteFrameName + this._damageFrameName,
+            this._damageFrameCount,
+            kPlayerDamageTime / this._damageFrameCount);
 
         this.node.stopAllActions();
-        this.node.runAction(damageAction);
+        this.node.runAction(cc.Animate.create(anim));
 
     }
 

@@ -1,5 +1,7 @@
 var img_Tileset = "tileds.png";
-var img_Bg = "castle.png";
+var img_Stage1Bg = "castle.png";
+var img_Stage2Bg = "city.png";
+var img_Stage3Bg = "park.png";
 var img_Chars = "characters.png";
 var plist_Chars = "characters.plist";
 var img_Hud = "hud.png";
@@ -9,7 +11,9 @@ var fnt_DialogueImg = "dialogue.png";
 
 var g_resources = [
     //image
-    {src:img_Bg},
+    {src:img_Stage1Bg},
+    {src:img_Stage2Bg},
+    {src:img_Stage3Bg},
     {src:img_Tileset},
     {src:img_Chars},
     {src:img_Hud},
