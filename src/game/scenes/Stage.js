@@ -163,7 +163,7 @@ var Stage = BaseLayer.extend({
             this
         );
         this._pauseButton = cc.Menu.create(optionsItem);
-        this._pauseButton.setPosition(cc.p(this._winSize.width - 50, this._winSize.height - 52));
+        this._pauseButton.setPosition(cc.p(this._winSize.width - 50, this._winSize.height - 48));
         this._hudLayer.addChild(this._pauseButton);
 
         var bg = cc.Sprite.createWithSpriteFrameName("options_bg.png");
@@ -564,7 +564,7 @@ var Stage = BaseLayer.extend({
 
             this._pauseButton.runAction(cc.MoveTo.create(
                 animationDuration,
-                cc.p(this._winSize.width - 200, this._winSize.height - 148)
+                cc.p(this._winSize.width - 200, this._winSize.height - 144)
             ));
 
             this._pauseMenuContainer.runAction(cc.MoveTo.create(
@@ -583,7 +583,7 @@ var Stage = BaseLayer.extend({
 
             this._pauseButton.runAction(cc.MoveTo.create(
                 animationDuration,
-                cc.p(this._winSize.width - 50, this._winSize.height - 52)
+                cc.p(this._winSize.width - 50, this._winSize.height - 48)
             ));
 
             this._pauseMenuContainer.runAction(cc.MoveTo.create(
