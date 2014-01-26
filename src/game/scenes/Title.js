@@ -1,7 +1,7 @@
 
 var Title = BaseLayer.extend({
 
-    _buttonStartPressed: false,
+    _buttonBPressed: false,
 
     init: function() {
         this._super();
@@ -26,13 +26,13 @@ var Title = BaseLayer.extend({
     buttonStart: function(pressed) {
 
         if (!pressed) {
-            this._buttonStartPressed = false;
+            this._buttonBPressed = false;
             return;
         }
 
-        if (this._buttonStartPressed)
+        if (this._buttonBPressed)
             return;
-        this._buttonStartPressed = true;
+        this._buttonBPressed = true;
 
         this.startGame();
 

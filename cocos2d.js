@@ -59,6 +59,7 @@
             'src/game/scenes/bases/BaseLayer.js',
             'src/game/scenes/Stage.js',
             'src/game/scenes/Dialogue.js',
+            'src/game/scenes/Credits.js',
             'src/game/scenes/Title.js',
             'src/game/scenes/MainScene.js'
         ]
