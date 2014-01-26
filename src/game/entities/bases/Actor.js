@@ -13,6 +13,7 @@ var Actor = GameObject.extend({
     _walkForceModifier: 1,
     _damageTime: 0,
     _attackTime: 0,
+    _attackDelay: 0,
 
     // "private" methods
     _loadAnimation: function(spriteName, frames, delay) {
@@ -109,6 +110,10 @@ var Actor = GameObject.extend({
         if (this._attackTime < 0)
             this._attackTime = 0;
 
+        this._attackDelay -= delta;
+        if (this._attackDelay < 0)
+            this._attackDelay = 0;
+
         if (this.node) {
             var parentNode = this.node.getParent();
             if (parentNode) {
@@ -176,9 +181,10 @@ var Actor = GameObject.extend({
 
     attack: function() {
 
-        if (this._attackTime > 0 || this._damageTime > 0)
+        if (this._attackDelay > 0 || this._damageTime > 0)
             return;
         this._attackTime = kDefaultAttackTime;
+        this._attackDelay = kDefaultAttackTime * 1.5;
 
         var anim = this._loadAnimation(this._spriteFrameName + this._attackFrameName,
             this._attackFrameCount,
@@ -195,6 +201,7 @@ var Actor = GameObject.extend({
             return;
         this._damageTime = kPlayerDamageTime;
         this._attackTime = 0;
+        this._attackDelay = 0;
 
         this.life--;
 
