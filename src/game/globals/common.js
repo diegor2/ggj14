@@ -1,5 +1,5 @@
 
-var kMaxLevel = 2;
+var kMaxLevel = 4;
 var kTmxPrefix = "stage";
 
 var PTM_RATIO = 32.0;

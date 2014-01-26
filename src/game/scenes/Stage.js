@@ -64,7 +64,9 @@ var Stage = BaseLayer.extend({
         this._mainLayer.addChild(this._tiledMap);
         this._mainLayer.addChild(this._mainBatchNode);
 
-        this._bgNode = cc.Sprite.create(img_Bg);
+        var mapProperties = this._tiledMap.getProperties()[0];
+
+        this._bgNode = cc.Sprite.create(mapProperties["bg"]);
         this._bgNode.setAnchorPoint(cc.p(0, 0));
         this._bgSize = this._bgNode.getContentSize();
 

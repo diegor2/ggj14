@@ -4,8 +4,6 @@ var img_Chars = "characters.png";
 var plist_Chars = "characters.plist";
 var img_Hud = "hud.png";
 var plist_Hud = "hud.plist";
-var fnt_Main = "main.fnt";
-var fnt_MainImg = "main.png";
 var fnt_Dialogue = "dialogue.fnt";
 var fnt_DialogueImg = "dialogue.png";
 
@@ -21,8 +19,6 @@ var g_resources = [
     {src:plist_Hud},
 
     //fnt
-    {src:fnt_Main},
-    {src:fnt_MainImg},
     {src:fnt_Dialogue},
     {src:fnt_DialogueImg}
 

@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="48" height="12" tilewidth="64" tileheight="64">
+ <properties>
+  <property name="bg" value="castle.png"/>
+ </properties>
  <tileset firstgid="1" name="tileds" tilewidth="64" tileheight="64">
   <image source="tileds.png" width="512" height="394"/>
  </tileset>
- <layer name="Camada de Tiles 1" width="16" height="12">
+ <layer name="main" width="48" height="12">
   <data encoding="base64" compression="zlib">
-   eJyt0LcOgwAMRVGaIlGWJCwkdAgllPD/X5c7MHmyLJ50ZN3VjnPNXHjwEShaLkSEGImi5e544IlU0XIZXngjV7RcgxYdekXLzfhiwapoOev/b+e1/r9AiQq1oT8YMGIy9IYdPxyG/gMsUg4v
+   eJzt0bsOgkAUhGEQLEQtQCxQUC4qKqi8/9Px021Os+GWuAmTfMmeKaZZy1qyxLzYWMGBi7Wm/7ds4GGLHfaafkxuE2zI+AhwQIijpu+bl/KuxT1FIpxwRqzsy36OZMp76N90GzkKsSH7Of5e/s3QjTcqsSF73X6CC65IDbzveKDE08D7gy9+aAy8WxrbG+Q=
   </data>
  </layer>
+ <objectgroup name="objects" width="48" height="12">
+  <object type="Player" x="29" y="588" width="85" height="116"/>
+  <object type="Enemy" x="1792" y="640" width="64" height="64"/>
+ </objectgroup>
+ <layer name="tree" width="48" height="12">
+  <data encoding="base64" compression="zlib">
+   eJztyzcOgDAQBVGTClJBcEFoCA3h/udjaldY8gqKHek1q7/GaJpMEWIkSJEF3kuXo0CJCnXgvXQNWnToYQPvpRswYsL88sd3L9mCFRt25+6z/6oDJy7czt1nr2l/7QGDWgS4
+  </data>
+ </layer>
+ <layer name="grass" width="48" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBIBOxLmQOOjY3zyxMgRMp8Ut8DUjIJRQAkAAJApAVg=
+  </data>
+ </layer>
+ <layer name="bush1" width="48" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApQAR8Q8wOxABRjE8enhxhzcbGpAcSAWByIJaAYmzg+PcSYi4s9CoYGAAA5SgLV
+  </data>
+ </layer>
+ <layer name="bush2" width="48" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAqwAz4g5gdiAQJigxWIAbE4EEsQEBsFIw8AACD2AOU=
+  </data>
+ </layer>
+ <objectgroup name="collision" width="48" height="12">
+  <object x="0" y="576">
+   <polyline points="0,0 0,192 3072,192 3072,0 0,0"/>
+  </object>
+ </objectgroup>
 </map>
