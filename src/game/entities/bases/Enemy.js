@@ -3,6 +3,8 @@ var Enemy = Actor.extend({
 
     player: null,
 	enemyState: GameObjectState.Standing,
+    _attackCurrentWaitTime: 0,
+    _attackWaitTime: 0,
 	
     _addFixtures: function() {
 
@@ -42,6 +44,7 @@ var Enemy = Actor.extend({
     
     init: function(b2world, properties) {
 
+        this._attackWaitTime = -1;
         this._walkForceModifier = 0.5;
 
         this.type = GameObjectType.Enemy;
@@ -58,11 +61,27 @@ var Enemy = Actor.extend({
 
     update: function(delta) {
 
-        this.reactToPlayer();
+        if (this._attackWaitTime > -1) {
+            this._attackCurrentWaitTime += delta;
+            if (this._attackCurrentWaitTime > this._attackWaitTime) {
+                this.attack();
+                this._attackWaitTime = -1;
+            }
+        } else {
+            this.reactToPlayer();
+        }
+
         this._checkAttackOnType(Player);
 
         this._super(delta);
 
+    },
+
+    _triggerAttack: function() {
+        this.horizontalMovingState = MovingState.Stopped;
+        this.verticalMovingState = MovingState.Stopped;
+        this._attackCurrentWaitTime = 0;
+        this._attackWaitTime = Math.random();
     },
 
     handleCollision: function(contactContainer) {
@@ -72,7 +91,7 @@ var Enemy = Actor.extend({
     reactToPlayer: function () {
 
         if (this.state != GameObjectState.Standing)
-        return;
+            return;
 
 		var myPosition = this.b2body.GetPosition();
 		var playerPosition = this.player.b2body.GetPosition();
@@ -84,7 +103,8 @@ var Enemy = Actor.extend({
             && (this.player.state != GameObjectState.Dead && this.player.state != GameObjectState.Dying)) {
 
             if (Math.abs(distance) < kEnemyAttackDistance) {
-                this.attack();
+                this._triggerAttack();
+                return;
             }
 
             if (GameObjectState.Attack == this.enemyState) {
@@ -102,6 +122,14 @@ var Enemy = Actor.extend({
             }
         }
 
+    },
+
+    takeHit: function() {
+
+        this._super();
+
+        this._attackCurrentWaitTime = 0;
+        this._attackWaitTime = -1;
 
     }
 
