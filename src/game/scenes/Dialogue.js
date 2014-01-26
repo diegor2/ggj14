@@ -22,7 +22,7 @@ var Dialogue = BaseLayer.extend({
             "LAZARENTO DI MININO!"
         ];
 
-        this._textLabel = cc.LabelBMFont.create("", fnt_Main, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
+        this._textLabel = cc.LabelBMFont.create("", fnt_Dialogue, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
         this._textLabel.setAnchorPoint(cc.p(0, 1));
         this._textLabel.setPosition(cc.p(20, winSize.height - 30));
 

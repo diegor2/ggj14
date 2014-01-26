@@ -4,6 +4,8 @@ var img_Chars = "characters.png";
 var plist_Chars = "characters.plist";
 var fnt_Main = "main.fnt";
 var fnt_MainImg = "main.png";
+var fnt_Dialogue = "dialogue.fnt";
+var fnt_DialogueImg = "dialogue.png";
 
 var g_resources = [
     //image
@@ -16,7 +18,9 @@ var g_resources = [
 
     //fnt
     {src:fnt_Main},
-    {src:fnt_MainImg}
+    {src:fnt_MainImg},
+    {src:fnt_Dialogue},
+    {src:fnt_DialogueImg}
 
     //tmx
 
