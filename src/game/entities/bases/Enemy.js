@@ -2,7 +2,7 @@
 var Enemy = Actor.extend({
 
     player: null,
-	GameObjectState: GameObjectState.Defence,
+	enemyState: GameObjectState.Standing,
 	
     _addFixtures: function() {
 
@@ -94,16 +94,16 @@ var Enemy = Actor.extend({
                 this.attack();
             }
 
-            if (GameObjectState.Attack == this.GameObjectState) {
+            if (GameObjectState.Attack == this.enemyState) {
                 this.horizontalMovingState = (distanceX > 0) ? MovingState.Left : MovingState.Right;
                 this.verticalMovingState = (distanceY < 0) ? MovingState.Up: MovingState.Down;
             } else {
-                this.GameObjectState = GameObjectState.Attack;
+                this.enemyState = GameObjectState.Attack;
             }
 
         } else {
-            if (GameObjectState.Attack == this.GameObjectState) {
-                this.GameObjectState = GameObjectState.Standing;
+            if (GameObjectState.Attack == this.enemyState) {
+                this.enemyState = GameObjectState.Standing;
                 this.horizontalMovingState = MovingState.Stopped;
                 this.verticalMovingState = MovingState.Stopped;
             }
