@@ -2,6 +2,8 @@ var img_Tileset = "tileds.png";
 var img_Bg = "castle.png";
 var img_Chars = "characters.png";
 var plist_Chars = "characters.plist";
+var img_Hud = "hud.png";
+var plist_Hud = "hud.plist";
 var fnt_Main = "main.fnt";
 var fnt_MainImg = "main.png";
 var fnt_Dialogue = "dialogue.fnt";
@@ -12,9 +14,11 @@ var g_resources = [
     {src:img_Bg},
     {src:img_Tileset},
     {src:img_Chars},
+    {src:img_Hud},
 
     //plist
     {src:plist_Chars},
+    {src:plist_Hud},
 
     //fnt
     {src:fnt_Main},

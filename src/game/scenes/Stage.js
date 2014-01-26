@@ -292,7 +292,7 @@ var Stage = BaseLayer.extend({
             }
 
             if (this._player.state == GameObjectState.Dead) {
-                cc.Director.getInstance().replaceScene(new StageScene(1));
+                cc.Director.getInstance().replaceScene(new TitleScene());
                 this._state = StageState.Ended;
                 this.unscheduleUpdate();
                 return;

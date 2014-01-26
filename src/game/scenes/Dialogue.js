@@ -1,5 +1,4 @@
 
-
 var Dialogue = BaseLayer.extend({
 
     _buttonAPressed: false,
