@@ -8,6 +8,10 @@ var Title = BaseLayer.extend({
 
         var winSize = cc.Director.getInstance().getWinSize();
 
+        var bg = cc.Sprite.create(img_Bg);
+        bg.setAnchorPoint(cc.p(0, 0));
+        this.addChild(bg);
+
         cc.SpriteFrameCache.getInstance().addSpriteFrames(plist_Hud);
 
         var startGameItem = cc.MenuItemSprite.create(cc.Sprite.createWithSpriteFrameName("start_game.png"), cc.Sprite.createWithSpriteFrameName("start_game_hover.png"), this.startGame, this);

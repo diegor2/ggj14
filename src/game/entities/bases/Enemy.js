@@ -2,7 +2,7 @@
 var Enemy = Actor.extend({
 
     player: null,
-	enemyState: EnemyState.Defence,
+	GameObjectState: GameObjectState.Defence,
 	
     _addFixtures: function() {
 
@@ -45,12 +45,12 @@ var Enemy = Actor.extend({
         this._spriteFrameName   = "child";
         this._idleFrameName     = "_idle";
         this._runningFrameName  = "_run";
-        this._atackFrameName    = "_attack";
+        this._attackFrameName    = "_attack";
         this._damageFrameName   = "_hit";
 
         this._idleFrameCount    = 2;
         this._runningFrameCount = 4;
-        this._atackFrameCount   = 1;
+        this._attackFrameCount   = 1;
         this._damageFrameCount  = 1;
 
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
@@ -94,27 +94,18 @@ var Enemy = Actor.extend({
                 this.attack();
             }
 
-                switch (this.enemyState) {
-                case EnemyState.Defence:
-                case EnemyState.Roaming:
-                    this.enemyState = EnemyState.Attack;
-                    break;
-                case EnemyState.Attack:
-                    this.horizontalMovingState = (distanceX > 0) ? MovingState.Left : MovingState.Right;
-                    this.verticalMovingState = (distanceY < 0) ? MovingState.Up: MovingState.Down;
-                    break;
+            if (GameObjectState.Attack == this.GameObjectState) {
+                this.horizontalMovingState = (distanceX > 0) ? MovingState.Left : MovingState.Right;
+                this.verticalMovingState = (distanceY < 0) ? MovingState.Up: MovingState.Down;
+            } else {
+                this.GameObjectState = GameObjectState.Attack;
             }
 
         } else {
-            switch (this.enemyState) {
-                case EnemyState.Defence:
-                case EnemyState.Roaming:
-                    break;
-                case EnemyState.Attack:
-                    this.enemyState = EnemyState.Defence;
-                    this.horizontalMovingState = MovingState.Stopped;
-                    this.verticalMovingState = MovingState.Stopped;
-                    break;
+            if (GameObjectState.Attack == this.GameObjectState) {
+                this.GameObjectState = GameObjectState.Standing;
+                this.horizontalMovingState = MovingState.Stopped;
+                this.verticalMovingState = MovingState.Stopped;
             }
         }
 

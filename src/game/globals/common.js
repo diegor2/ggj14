@@ -10,6 +10,8 @@ var kMaxUpdatesPerFrame = 10;
 var kZOrderBase = 200;
 var kIdleActionTag = 400;
 var kWalkActionTag = 500;
+var kAttackActionTag = 600;
+var kDamageActionTag = 700;
 
 var kWalkForce = 5.0;
 var kPlayerDamageTime = 0.5;
@@ -40,13 +42,8 @@ var StageState = {
 var GameObjectState = {
     Standing: 0,
     Dying: 1,
-    Dead: 2
-};
-
-var EnemyState = {
-    Defence: 0,
-    Roaming: 1,
-    Attack: 2
+    Dead: 2,
+    Attack: 3
 };
 
 var GameObjectType  = {
