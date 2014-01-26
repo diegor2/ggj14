@@ -15,6 +15,21 @@ var Actor = GameObject.extend({
     _attackTime: 0,
 
     // "private" methods
+    _loadAnimation: function(spriteName, frames, delay) {
+
+        var anim = cc.Animation.create();
+
+        anim.setDelayPerUnit(delay);
+        anim.setRestoreOriginalFrame(true);
+
+        for(var i = 1; i <= frames ; i++){
+            var frame = this._spriteCache.getSpriteFrame(spriteName + "_" + i + ".png");
+            anim.addSpriteFrame(frame);
+        }
+
+        return anim;
+
+    },
 
     _updateAnimation: function() {
 
@@ -32,18 +47,8 @@ var Actor = GameObject.extend({
 
                     var spriteCache = this._spriteCache;
 
-                    var anim = cc.Animation.create();
-                    anim.setDelayPerUnit(1);
-                    anim.setRestoreOriginalFrame(true);
-
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_1.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_2.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_3.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_4.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_5.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_6.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_7.png"));
-                    anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + "_8.png"));
+                    var anim = this._loadAnimation(this._spriteFrameName
+                        + this._runningFrameName, this._runningFrameCount, 2);
 
                     walkAction = cc.Speed.create(cc.RepeatForever.create(cc.Animate.create(anim)), speed);
                     walkAction.setTag(kWalkActionTag);
@@ -73,18 +78,8 @@ var Actor = GameObject.extend({
 
         var spriteCache = this._spriteCache;
 
-        var anim = cc.Animation.create();
-        anim.setDelayPerUnit(0.075);
-        anim.setRestoreOriginalFrame(true);
-
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_1.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_2.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_3.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_4.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_5.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_6.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_7.png"));
-        anim.addSpriteFrame(spriteCache.getSpriteFrame(this._spriteFrameName + this._idleFrameName + "_8.png"));
+        var anim = this._loadAnimation(this._spriteFrameName
+            + this._idleFrameName, this._idleFrameCount, 0.5);
 
         idleAction = cc.RepeatForever.create(cc.Animate.create(anim));
         idleAction.setTag(kIdleActionTag);
@@ -98,10 +93,9 @@ var Actor = GameObject.extend({
 
     init: function(b2world, properties) {
 
-        this._idleFrameName = "_idle";
-
         this._filterCategory = EntityFilterCategory.Actor;
         this._filterMask = 0xffff & ~EntityFilterCategory.Actor;
+//        this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + ".png");
 
         this._super(b2world, properties);
 
