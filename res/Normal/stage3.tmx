@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="48" height="12" tilewidth="64" tileheight="64">
  <properties>
-  <property name="bg" value="castle.png"/>
+  <property name="bg" value="park.png"/>
  </properties>
  <tileset firstgid="1" name="tileds" tilewidth="64" tileheight="64">
-  <image source="tileds.png" width="512" height="394"/>
+  <image source="tileds.png" width="512" height="1042"/>
  </tileset>
  <layer name="main" width="48" height="12">
   <data encoding="base64" compression="zlib">

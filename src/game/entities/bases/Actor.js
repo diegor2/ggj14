@@ -210,6 +210,22 @@ var Actor = GameObject.extend({
         this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
         this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
+        console.log(">>>> DEMAGED <<<<");
+
+        var damageAction = this.node.getActionByTag(kDamageActionTag);
+
+        if (damageAction)
+            return;
+
+        var anim = this._loadAnimation(this._spriteFrameName
+            + this._damageFrameName, this._damageFrameCount, 0.5);
+
+        damageAction = cc.RepeatForever.create(cc.Animate.create(anim));
+        damageAction.setTag(kAttackActionTag);
+
+        this.node.stopAllActions();
+        this.node.runAction(damageAction);
+
     }
 
 });
