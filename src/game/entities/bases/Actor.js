@@ -178,19 +178,12 @@ var Actor = GameObject.extend({
             return;
         this._attackTime = kDefaultAttackTime;
 
-        var attackAction = this.node.getActionByTag(kAttackActionTag);
-
-        if (attackAction)
-            return;
-
-        var anim = this._loadAnimation(this._spriteFrameName
-            + this._attackFrameName, this._attackFrameCount, 0.5);
-
-        attackAction = cc.RepeatForever.create(cc.Animate.create(anim));
-        attackAction.setTag(kAttackActionTag);
+        var anim = this._loadAnimation(this._spriteFrameName + this._attackFrameName,
+            this._attackFrameCount,
+            kPlayerDamageTime / this._damageFrameCount);
 
         this.node.stopAllActions();
-        this.node.runAction(attackAction);
+        this.node.runAction(cc.Animate.create(anim));
 
     },
 
@@ -210,21 +203,12 @@ var Actor = GameObject.extend({
         this.b2body.SetLinearVelocity(new b2Vec2(0, 0));
         this.b2body.ApplyLinearImpulse(impulse, this.b2body.GetWorldCenter());
 
-        console.log(">>>> DEMAGED <<<<");
-
-        var damageAction = this.node.getActionByTag(kDamageActionTag);
-
-        if (damageAction)
-            return;
-
-        var anim = this._loadAnimation(this._spriteFrameName
-            + this._damageFrameName, this._damageFrameCount, 0.5);
-
-        damageAction = cc.RepeatForever.create(cc.Animate.create(anim));
-        damageAction.setTag(kAttackActionTag);
+        var anim = this._loadAnimation(this._spriteFrameName + this._damageFrameName,
+            this._damageFrameCount,
+           kPlayerDamageTime / this._damageFrameCount);
 
         this.node.stopAllActions();
-        this.node.runAction(damageAction);
+        this.node.runAction(cc.Animate.create(anim));
 
     }
 
