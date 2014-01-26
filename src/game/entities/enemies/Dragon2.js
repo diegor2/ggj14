@@ -3,6 +3,8 @@ var Dragon2 = Enemy.extend({
 
     init: function(b2world, properties) {
 
+        this._super(b2world, properties);
+
         this._spriteFrameName   = "dragon2";
 
         this._idleFrameName     = "_idle";
@@ -17,8 +19,6 @@ var Dragon2 = Enemy.extend({
 
         this._walkForceModifier = 0.5;
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
-
-        this._super(b2world, properties);
 
     }
 

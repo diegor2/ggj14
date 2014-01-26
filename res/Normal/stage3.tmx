@@ -12,15 +12,15 @@
   </data>
  </layer>
  <objectgroup name="objects" width="48" height="12">
-  <object type="Player" x="29" y="588" width="85" height="116"/>
-  <object type="Dragon" x="2048" y="576" width="64" height="64"/>
-  <object type="Dragon" x="1664" y="704" width="64" height="64"/>
-  <object type="Dragon" x="640" y="576" width="64" height="64"/>
-  <object type="Dragon" x="512" y="704" width="64" height="64"/>
-  <object type="Dragon" x="2880" y="576" width="64" height="64"/>
-  <object type="Dragon" x="2944" y="640" width="64" height="64"/>
-  <object type="Dragon" x="2816" y="704" width="64" height="64"/>
-  <object type="Dragon" x="2368" y="640" width="64" height="64"/>
+  <object type="ElderPlayer" x="29" y="588" width="85" height="116"/>
+  <object type="Doctor" x="2048" y="576" width="64" height="64"/>
+  <object type="Doctor2" x="1664" y="704" width="64" height="64"/>
+  <object type="Doctor" x="640" y="576" width="64" height="64"/>
+  <object type="Doctor2" x="512" y="704" width="64" height="64"/>
+  <object type="Doctor" x="2880" y="576" width="64" height="64"/>
+  <object type="Doctor2" x="2944" y="640" width="64" height="64"/>
+  <object type="Doctor" x="2816" y="704" width="64" height="64"/>
+  <object type="Doctor2" x="2368" y="640" width="64" height="64"/>
  </objectgroup>
  <layer name="tree" width="48" height="12">
   <data encoding="base64" compression="zlib">
