@@ -18,11 +18,11 @@ var Dialogue = BaseLayer.extend({
         var winSize = cc.Director.getInstance().getWinSize();
 
         this._messages = [
-            "Olha soh mamae, to testando esses textos\naqui! Um bagulho doido que doi o zoi!",
+            "Olha só mamãe, tô testando esses textos aqui!\nUm bagulho doido que dói o zói!",
             "LAZARENTO DI MININO!"
         ];
 
-        this._textLabel = cc.LabelBMFont.create("", fnt_Main, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
+        this._textLabel = cc.LabelBMFont.create("", fnt_Dialogue, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
         this._textLabel.setAnchorPoint(cc.p(0, 1));
         this._textLabel.setPosition(cc.p(20, winSize.height - 30));
 
