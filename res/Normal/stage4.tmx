@@ -11,9 +11,9 @@
    eJzt0MkOgkAQRVFEXYC6cFo4zwqKw/9/ndcFCanQ3ZZpF53wkrPoyqMqIYqaNPlPWojRRgddj31TV3vTlgQpeuhj4LFv6mpv2jLECGNMMPXYN3W1N03JMcMcCyy/+EbTl938hx2u7LDHAUcxLyPndX3t7urctceWzz+54oZCzMvIeV1fu7s6d+1ZYY0NtgG+TzjjgizA9x0PPPEK8P0G7Iwf8Q==
   </data>
  </layer>
- <objectgroup name="objects" width="48" height="12" visible="0">
+ <objectgroup name="objects" width="48" height="12">
   <object type="Player" x="29" y="588" width="85" height="116"/>
-  <object type="Enemy" x="1792" y="640" width="64" height="64"/>
+  <object type="Dragon" x="2176" y="640" width="64" height="64"/>
  </objectgroup>
  <layer name="grass" width="48" height="12" visible="0">
   <data encoding="base64" compression="zlib">
@@ -25,7 +25,7 @@
    eJxjYBgFo2AUjIJRMApQQTcQ9wBxLxBPI0KckBwudaTIkQImA/EUIJ4KxBI4xPHpwQXE0NSJQ80Xg7KJMWMUDA4AAAygEy0=
   </data>
  </layer>
- <objectgroup name="collision" width="48" height="12" visible="0">
+ <objectgroup name="collision" width="48" height="12">
   <object x="0" y="576">
    <polyline points="0,0 0,192 3072,192 3072,0 0,0"/>
   </object>

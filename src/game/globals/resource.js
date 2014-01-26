@@ -5,6 +5,7 @@ var img_Stage3Bg = "park.png";
 var img_Stage4Bg = "meadow.png";
 var img_Dialogue1Bg = "bedroom.png";
 var img_Dialogue2Bg = "office.png";
+var img_TitleBg = "title.png";
 var plist_Chars = "characters.plist";
 var img_Chars = "characters.png";
 var plist_Hud = "hud.plist";
@@ -26,6 +27,7 @@ var g_resources = [
     {src:img_DeathSmoke},
     {src:img_Dialogue1Bg},
     {src:img_Dialogue2Bg},
+    {src:img_TitleBg},
 
     //plist
     {src:plist_Chars},

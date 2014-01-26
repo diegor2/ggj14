@@ -45,23 +45,21 @@ var Dialogue = BaseLayer.extend({
                 bgName = img_Dialogue2Bg;
                 break;
             case 4:
-                this._messages.push("What do you see?\nLooks like you today?");
-                this._messages.push("Time passes, everything changes...");
-                this._messages.push("You should look outside.\nBecause, about yourself, no one can help.");
+                this._messages.push("What the...?");
                 //spriteFrameNames.push("child_idle_1.png");
                 //spriteFrameNames.push("child_idle_2.png");
                 bgName = img_Stage4Bg;
                 break;
             case 5:
                 if (win) {
-                    this._messages.push("Testando...");
-                    this._messages.push("E mais uma vez testando...");
+                    this._messages.push("What do you see?\nYourself?");
+                    this._messages.push("Everything changes with time.");
+                    this._messages.push("Look outside, outside yourself...\nBecause the world is not what you make of it.");
                     //spriteFrameNames.push("child_idle_1.png");
                     //spriteFrameNames.push("child_idle_2.png");
                     bgName = img_Stage4Bg;
                 } else {
-                    this._messages.push("Testando...");
-                    this._messages.push("E mais uma vez testando...");
+                    this._messages.push("Get a life, a REAL life.\nYou don't live only according to what you want to see.");
                     //spriteFrameNames.push("child_idle_1.png");
                     //spriteFrameNames.push("child_idle_2.png");
                     bgName = img_Stage4Bg;

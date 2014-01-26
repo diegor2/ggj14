@@ -8,7 +8,7 @@ var Title = BaseLayer.extend({
 
         var winSize = cc.Director.getInstance().getWinSize();
 
-        var bg = cc.Sprite.create(img_Stage1Bg);
+        var bg = cc.Sprite.create(img_TitleBg);
         bg.setAnchorPoint(cc.p(0, 0));
         this.addChild(bg);
 
@@ -21,7 +21,7 @@ var Title = BaseLayer.extend({
         var menu = cc.Menu.create(startGameItem, creditsItem);
 
         menu.alignItemsVerticallyWithPadding(10);
-        menu.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        menu.setPosition(cc.p(winSize.width * 0.25, winSize.height * 0.25));
 
         this.addChild(menu);
 

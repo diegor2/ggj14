@@ -5,7 +5,7 @@ var kTmxPrefix = "stage";
 var PTM_RATIO = 32.0;
 var kGravity = (-PTM_RATIO * 0.0);
 var kFixedStepTime = 0.0166666;
-var kMaxUpdatesPerFrame = 8;
+var kMaxUpdatesPerFrame = 10;
 
 var kZOrderBase = 200;
 var kIdleActionTag = 400;
@@ -19,7 +19,7 @@ var kPlayerDamageImpulseX = 4500.0;
 var kStopVelocityMultiplier = 0.6;
 var kStopVelocityMultiplierWhenDamaged = 0.7;
 var kDefaultAttackTime = 0.1;
-var kPlayerMaxLife = 10;
+var kPlayerMaxLife = 6;
 var kEnemyMaxLife = 6;
 
 var kEnemyPeacefulDistance = 30.0;

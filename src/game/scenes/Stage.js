@@ -112,8 +112,12 @@ var Stage = BaseLayer.extend({
 
                     break;
 
-                case "Enemy":
-                    this._createEnemy(gameObjectProperties);
+                case "Dragon":
+                    this._createEnemy(Dragon, gameObjectProperties);
+                    break;
+
+                case "Dragon2":
+                    this._createEnemy(Dragon2, gameObjectProperties);
                     break;
 
                 case "LevelEnd":
@@ -277,9 +281,9 @@ var Stage = BaseLayer.extend({
         return gameObject;
     },
 
-    _createEnemy: function(properties) {
+    _createEnemy: function(type, properties) {
 
-        var gameObject = this._createGameObject(Enemy, properties);
+        var gameObject = this._createGameObject(type, properties);
         gameObject.player = this._player;
 
         this._enemies.push(gameObject);

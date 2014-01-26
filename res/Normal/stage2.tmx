@@ -13,7 +13,11 @@
  </layer>
  <objectgroup name="objects" width="48" height="12">
   <object type="Player" x="29" y="588" width="85" height="116"/>
-  <object type="Enemy" x="1792" y="640" width="64" height="64"/>
+  <object type="Dragon" x="1984" y="576" width="64" height="64"/>
+  <object type="Dragon" x="1920" y="704" width="64" height="64"/>
+  <object type="Dragon" x="2816" y="640" width="64" height="64"/>
+  <object type="Dragon" x="2560" y="640" width="64" height="64"/>
+  <object type="Dragon" x="576" y="640" width="64" height="64"/>
  </objectgroup>
  <layer name="lamp" width="48" height="12">
   <data encoding="base64" compression="zlib">
