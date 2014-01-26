@@ -6,6 +6,7 @@ var Dialogue = BaseLayer.extend({
     _dialogueStep: 0,
     _messageLength: 0,
     _messages: null,
+    _started: false,
     _isWaitingInput: false,
     _textLabel: null,
 
@@ -32,9 +33,14 @@ var Dialogue = BaseLayer.extend({
 
         this.runAction(cc.Sequence.create([
             cc.DelayTime.create(1),
+            cc.CallFunc.create(this.startDialogue, this),
             cc.CallFunc.create(this.drawLetter, this)
         ]));
 
+    },
+
+    startDialogue: function() {
+        this._started = true;
     },
 
     drawLetter: function() {
@@ -65,6 +71,9 @@ var Dialogue = BaseLayer.extend({
         if (this._buttonAPressed)
             return;
         this._buttonAPressed = true;
+
+        if (!this._started)
+            return;
 
         if (!this._isWaitingInput) {
             this._messageLength = this._messages[this._dialogueStep].length - 1;
