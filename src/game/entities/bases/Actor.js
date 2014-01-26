@@ -130,7 +130,7 @@ var Actor = GameObject.extend({
         if (this.automaticMovement) {
 
             var stopVelocityMultiplier = kStopVelocityMultiplier;
-            if (this._damageTime > 0) {
+            if (this._damageTime > 0 || this._attackTime > 0) {
                 stopVelocityMultiplier = kStopVelocityMultiplierWhenDamaged;
                 this.horizontalMovingState = MovingState.Stopped;
                 this.verticalMovingState = MovingState.Stopped;
@@ -189,6 +189,8 @@ var Actor = GameObject.extend({
         if (this._attackTime > 0)
             return;
         this._attackTime = kDefaultAttackTime;
+
+
 
     },
 

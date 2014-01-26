@@ -10,6 +10,7 @@ var Stage = BaseLayer.extend({
     _buttonUpPressed: false,
     _buttonDownPressed: false,
     _buttonAPressed: false,
+    _buttonStartPressed: false,
 
     // "private" properties
 
@@ -18,11 +19,16 @@ var Stage = BaseLayer.extend({
     _tileMapSize: null,
     _bgSize: null,
     _contactListener: null,
+
     _bgNode: null,
     _mainLayer: null,
     _mainBatchNode: null,
     _tiledMap: null,
     _hudLayer: null,
+    _pauseLayer: null,
+    _pauseButton: null,
+    _pauseMenuContainer: null,
+
     _movingStates: null,
     _gameObjects: null,
     _enemies: null,
@@ -129,10 +135,58 @@ var Stage = BaseLayer.extend({
         this._hudLayer = new HUDLayer();
         this._hudLayer.init(this._player, level);
 
+        var pauseLabel = cc.LabelBMFont.create("PAUSED", fnt_Dialogue, this._winSize.width, cc.TEXT_ALIGNMENT_CENTER);
+        pauseLabel.setAnchorPoint(cc.p(0.5, 0.5));
+        pauseLabel.setPosition(cc.p(this._winSize.width / 2, this._winSize.height / 2));
+
+        this._pauseLayer = cc.LayerColor.create(cc.c4b(0, 0, 0, 100));
+        this._pauseLayer.setVisible(false);
+        this._pauseLayer.addChild(pauseLabel);
+
+        this._buildPauseMenu();
+
+        this.addChild(this._pauseLayer);
         this.addChild(this._hudLayer);
         this.updateMapPosition();
         this.scheduleUpdate();
 
+    },
+
+    _buildPauseMenu: function() {
+
+        var optionsItem = cc.MenuItemSprite.create(
+            cc.Sprite.createWithSpriteFrameName("options.png"),
+            cc.Sprite.createWithSpriteFrameName("options_hover.png"),
+            this.triggerPause,
+            this
+        );
+        this._pauseButton = cc.Menu.create(optionsItem);
+        this._pauseButton.setPosition(cc.p(this._winSize.width - 50, this._winSize.height - 52));
+        this._hudLayer.addChild(this._pauseButton);
+
+        var bg = cc.Sprite.createWithSpriteFrameName("options_bg.png");
+        bg.setAnchorPoint(cc.p(1, 1));
+        bg.setPosition(cc.p(this._winSize.width, this._winSize.height));
+
+        var titleItem = cc.MenuItemLabel.create(cc.LabelBMFont.create("Exit", fnt_Dialogue, 170, cc.TEXT_ALIGNMENT_CENTER), this._goToTitle, this);
+
+        var menu = cc.Menu.create(titleItem);
+
+        menu.alignItemsVerticallyWithPadding(10);
+        menu.setPosition(cc.p(this._winSize.width - 90, this._winSize.height - 66));
+
+        this._pauseMenuContainer = cc.Layer.create();
+        this._pauseMenuContainer.setAnchorPoint(cc.p(0, 0));
+        this._pauseMenuContainer.setPosition(cc.p(this._halfWinSize.width / 2, this._halfWinSize.height / 2));
+        this._pauseMenuContainer.addChild(bg);
+        this._pauseMenuContainer.addChild(menu);
+
+        this._pauseLayer.addChild(this._pauseMenuContainer);
+
+    },
+
+    _goToTitle: function() {
+        cc.Director.getInstance().replaceScene(new TitleScene());
     },
 
     // returns the main fixture created for the body
@@ -233,76 +287,78 @@ var Stage = BaseLayer.extend({
 
     update: function(delta) {
 
-        if (this._state == StageState.Running)
+        if (this._state == StageState.Running) {
+
             this._stageTime += delta;
-        this._frameAccumulator += delta;
+            this._frameAccumulator += delta;
 
-        var stepCount = 0;
-        while (this._frameAccumulator > kFixedStepTime) {
-            this._frameAccumulator -= kFixedStepTime;
+            var stepCount = 0;
+            while (this._frameAccumulator > kFixedStepTime) {
+                this._frameAccumulator -= kFixedStepTime;
 
-            stepCount++;
-            if (stepCount > kMaxUpdatesPerFrame)
-                continue;
+                stepCount++;
+                if (stepCount > kMaxUpdatesPerFrame)
+                    continue;
 
-            this._b2world.Step(kFixedStepTime, 5, 1);
+                this._b2world.Step(kFixedStepTime, 5, 1);
 
-            var didFindHorizontalMovingState = false;
-            var didFindVerticalMovingState = false;
-            var movingStatesLength = this._movingStates.length;
+                var didFindHorizontalMovingState = false;
+                var didFindVerticalMovingState = false;
+                var movingStatesLength = this._movingStates.length;
 
-            while (movingStatesLength--) {
-                var aMovingState = this._movingStates[movingStatesLength];
-                if (!didFindHorizontalMovingState && (aMovingState == MovingState.Left || aMovingState == MovingState.Right)) {
-                    this._player.horizontalMovingState = aMovingState;
-                    didFindHorizontalMovingState = true;
+                while (movingStatesLength--) {
+                    var aMovingState = this._movingStates[movingStatesLength];
+                    if (!didFindHorizontalMovingState && (aMovingState == MovingState.Left || aMovingState == MovingState.Right)) {
+                        this._player.horizontalMovingState = aMovingState;
+                        didFindHorizontalMovingState = true;
+                    }
+                    if (!didFindVerticalMovingState && (aMovingState == MovingState.Up || aMovingState == MovingState.Down)) {
+                        this._player.verticalMovingState = aMovingState;
+                        didFindVerticalMovingState = true;
+                    }
                 }
-                if (!didFindVerticalMovingState && (aMovingState == MovingState.Up || aMovingState == MovingState.Down)) {
-                    this._player.verticalMovingState = aMovingState;
-                    didFindVerticalMovingState = true;
+
+                if (!didFindHorizontalMovingState)
+                    this._player.horizontalMovingState = MovingState.Stopped;
+                if (!didFindVerticalMovingState)
+                    this._player.verticalMovingState = MovingState.Stopped;
+
+                this._player.update(kFixedStepTime);
+                this._hudLayer.update(kFixedStepTime);
+
+                for (var g in this._gameObjects) {
+                    this._gameObjects[g].update(kFixedStepTime);
                 }
-            }
 
-            if (!didFindHorizontalMovingState)
-                this._player.horizontalMovingState = MovingState.Stopped;
-            if (!didFindVerticalMovingState)
-                this._player.verticalMovingState = MovingState.Stopped;
+                var i;
 
-            this._player.update(kFixedStepTime);
-            this._hudLayer.update(kFixedStepTime);
-
-            for (var g in this._gameObjects) {
-                this._gameObjects[g].update(kFixedStepTime);
-            }
-
-            var i;
-
-            for (i = 0; i < this._gameObjects.length; i++) {
-                if (this._gameObjects[i].state == GameObjectState.Dead) {
-                    this._gameObjects.splice(i, 1);
-                    i--;
+                for (i = 0; i < this._gameObjects.length; i++) {
+                    if (this._gameObjects[i].state == GameObjectState.Dead) {
+                        this._gameObjects.splice(i, 1);
+                        i--;
+                    }
                 }
-            }
 
-            for (i = 0; i < this._enemies.length; i++) {
-                if (this._enemies[i].state == GameObjectState.Dead) {
-                    this._enemies.splice(i, 1);
-                    i--;
+                for (i = 0; i < this._enemies.length; i++) {
+                    if (this._enemies[i].state == GameObjectState.Dead) {
+                        this._enemies.splice(i, 1);
+                        i--;
+                    }
                 }
-            }
 
-            if (this._player.state == GameObjectState.Dead) {
-                cc.Director.getInstance().replaceScene(new TitleScene());
-                this._state = StageState.Ended;
-                this.unscheduleUpdate();
-                return;
-            }
+                if (this._player.state == GameObjectState.Dead) {
+                    cc.Director.getInstance().replaceScene(new TitleScene());
+                    this._state = StageState.Ended;
+                    this.unscheduleUpdate();
+                    return;
+                }
 
-            if (this._enemies.length == 0) {
-                this.end();
-                return;
-            }
+                if (this._enemies.length == 0) {
+                    this.end();
+                    return;
+                }
 
+            }
         }
 
         this.updateMapPosition();
@@ -466,7 +522,74 @@ var Stage = BaseLayer.extend({
 
     },
 
+    buttonB: function(pressed) {
+
+        if (!pressed)
+            return;
+
+        if (this._state == StageState.Paused)
+            this.triggerPause();
+
+    },
+
     buttonStart: function(pressed) {
+
+        if (!pressed) {
+            this._buttonStartPressed = false;
+            return;
+        }
+
+        if (this._buttonStartPressed)
+            return;
+        this._buttonStartPressed = true;
+
+        this.triggerPause();
+
+    },
+
+    triggerPause: function() {
+
+        var animationDuration = 0.1;
+
+        if (this._state == StageState.Running) {
+            this._state = StageState.Paused;
+
+            this._pauseLayer.setVisible(true);
+            this.recursivelyPauseAllChildren(this._mainLayer);
+
+            this._pauseButton.stopAllActions();
+            this._pauseMenuContainer.stopAllActions();
+
+            this._pauseButton.runAction(cc.MoveTo.create(
+                animationDuration,
+                cc.p(this._winSize.width - 200, this._winSize.height - 148)
+            ));
+
+            this._pauseMenuContainer.runAction(cc.MoveTo.create(
+                animationDuration,
+                cc.p(0, 0)
+            ));
+
+        } else if (this._state == StageState.Paused) {
+            this._state = StageState.Running;
+
+            this._pauseLayer.setVisible(false);
+            this.recursivelyResumeAllChildren(this._mainLayer);
+
+            this._pauseButton.stopAllActions();
+            this._pauseMenuContainer.stopAllActions();
+
+            this._pauseButton.runAction(cc.MoveTo.create(
+                animationDuration,
+                cc.p(this._winSize.width - 50, this._winSize.height - 52)
+            ));
+
+            this._pauseMenuContainer.runAction(cc.MoveTo.create(
+                animationDuration,
+                cc.p(this._halfWinSize.width / 2, this._halfWinSize.height / 2)
+            ));
+
+        }
 
     }
 
