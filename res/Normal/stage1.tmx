@@ -10,18 +10,6 @@
  </layer>
  <objectgroup name="objects" width="24" height="12">
   <object type="Player" x="29" y="588" width="85" height="116"/>
-  <object type="Enemy" x="222" y="602" width="32" height="30"/>
-  <object type="Enemy" x="221" y="643" width="32" height="30"/>
-  <object type="Enemy" x="288" y="639" width="32" height="30"/>
-  <object type="Enemy" x="277" y="590" width="32" height="30"/>
-  <object type="Enemy" x="257" y="628" width="32" height="30"/>
-  <object type="Enemy" x="191" y="591" width="32" height="30"/>
-  <object type="Enemy" x="190" y="632" width="32" height="30"/>
-  <object type="Enemy" x="246" y="579" width="32" height="30"/>
-  <object type="Enemy" x="283" y="661" width="32" height="30"/>
-  <object type="Enemy" x="217" y="624" width="32" height="30"/>
-  <object type="Enemy" x="216" y="665" width="32" height="30"/>
-  <object type="Enemy" x="272" y="612" width="32" height="30"/>
  </objectgroup>
  <layer name="tree" width="24" height="12">
   <data encoding="base64" compression="zlib">
@@ -45,6 +33,6 @@
  </layer>
  <objectgroup name="collision" width="24" height="12">
   <object x="548" y="375" width="76" height="201"/>
-  <object x="936" y="357" width="76" height="201"/>
+  <object x="1311" y="373" width="76" height="201"/>
  </objectgroup>
 </map>

@@ -311,7 +311,7 @@ var Stage = BaseLayer.extend({
 
     updateMapPosition: function() {
 
-        var playerPosition = this._player.node.getPosition();
+        var playerPosition = this._player.node ? this._player.node.getPosition() : cc.p(0, 0);
 
         var x = Math.max(playerPosition.x, this._halfWinSize.width);
         var y = Math.max(playerPosition.y, this._halfWinSize.height);

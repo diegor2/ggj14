@@ -19,7 +19,6 @@ var kStopVelocityMultiplierWhenDamaged = 0.7;
 var kDefaultAttackTime = 0.2;
 var kPlayerMaxLife = 6;
 var kEnemyMaxLife = 4;
-
 var kEnemyPeacefulDistance = 2.0;
 var kEnemyAtackDistance = 0.05;
 

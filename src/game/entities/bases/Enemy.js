@@ -6,7 +6,7 @@ var Enemy = Actor.extend({
 	
     _addFixtures: function() {
 
-        var width = this.node.getContentSize().width * 0.1;
+        var width = this.node ? this.node.getContentSize().width * 0.1 : 0;
 
         this._addCircularFixture(width);
 
@@ -42,8 +42,19 @@ var Enemy = Actor.extend({
     
     init: function(b2world, properties) {
 
-        this.node = cc.Sprite.createWithSpriteFrameName("dog2_idle_1.png");
-        this._spriteFrameName = "dog2";
+        this._spriteFrameName   = "child";
+        this._idleFrameName     = "_idle";
+        this._runningFrameName  = "_run";
+        this._atackFrameName    = "_attack";
+        this._damageFrameName   = "_hit";
+
+        this._idleFrameCount    = 2;
+        this._runningFrameCount = 4;
+        this._atackFrameCount   = 1;
+        this._damageFrameCount  = 1;
+
+
+        this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
         this.type = GameObjectType.Enemy;
         this.life = kEnemyMaxLife;
 
@@ -82,7 +93,6 @@ var Enemy = Actor.extend({
 
             if(Math.abs(distance) < kEnemyAtackDistance ) {
                 this.attack();
-                console.log("==> attack!!!! <== " + distance);
             }
 
                 switch (this.enemyState) {

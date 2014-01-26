@@ -23,8 +23,18 @@ var GameObject = cc.Class.extend({
 
     _isSensor: false,
     _spriteCache: null,
+
     _spriteFrameName: "",
     _idleFrameName: "",
+    _runningFrameName: "",
+    _atackFrameName: "",
+    _damageFrameName: "",
+
+    _idleFrameCount: 0,
+    _runningFrameCount: 0,
+    _atackFrameCount: 0,
+    _damageFrameCount: 0,
+
     _contacts: null,
     _isb2bodyDestroyed: false,
     _initialPosition: null,
