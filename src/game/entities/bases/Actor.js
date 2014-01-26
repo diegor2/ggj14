@@ -22,7 +22,7 @@ var Actor = GameObject.extend({
         anim.setDelayPerUnit(delay);
         anim.setRestoreOriginalFrame(true);
 
-        for(var i = 1; i <= frames ; i++){
+        for (var i = 1; i <= frames ; i++) {
             var frame = this._spriteCache.getSpriteFrame(spriteName + "_" + i + ".png");
             anim.addSpriteFrame(frame);
         }
@@ -43,7 +43,7 @@ var Actor = GameObject.extend({
                 var velX = Math.abs(vel.get_x());
                 var velY = Math.abs(vel.get_y());
                 var baseSpeedVal = velX > velY ? velX : velY;
-                var speed = Math.abs(baseSpeedVal) * 6;
+                var speed = Math.abs(baseSpeedVal) * kWalkAnimSpeedFactor;
 
                 var walkAction = this.node.getActionByTag(kWalkActionTag);
                 if (!walkAction) {

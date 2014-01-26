@@ -10,6 +10,7 @@ var kMaxUpdatesPerFrame = 10;
 var kZOrderBase = 200;
 var kIdleActionTag = 400;
 var kWalkActionTag = 500;
+var kWalkAnimSpeedFactor = 6;
 var kAttackActionTag = 600;
 var kDamageActionTag = 700;
 

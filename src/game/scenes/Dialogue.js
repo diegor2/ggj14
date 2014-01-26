@@ -10,26 +10,90 @@ var Dialogue = BaseLayer.extend({
     _isWaitingInput: false,
     _textLabel: null,
 
-    init: function(nextLevel) {
+    init: function(nextLevel, win) {
         this._super();
 
         this._nextLevel = nextLevel;
 
+        var spriteCache = cc.SpriteFrameCache.getInstance();
+
+        spriteCache.addSpriteFrames(plist_Chars);
+
         var winSize = cc.Director.getInstance().getWinSize();
 
-        this._messages = [
-            "Olha só mamãe, tô testando esses textos aqui!\nUm bagulho doido que dói o zói!",
-            "LAZARENTO DI MININO!"
-        ];
+        this._messages = [];
+        this._dialogueStep = 0;
+        this._messageLength = 0;
+        var spriteFrameNames = [];
+        var bgName = "";
+
+        switch (nextLevel) {
+            case 2:
+                this._messages.push("Olha só mamãe, tô testando esses textos aqui!\nUm bagulho doido que dói o zói!");
+                this._messages.push("LAZARENTO DI MININO!");
+                spriteFrameNames.push("child_idle_1.png");
+                spriteFrameNames.push("child_idle_2.png");
+                bgName = "castle.png";
+                break;
+            case 3:
+                this._messages.push("Testando...");
+                this._messages.push("E mais uma vez testando...");
+                spriteFrameNames.push("child_idle_1.png");
+                spriteFrameNames.push("child_idle_2.png");
+                bgName = "castle.png";
+                break;
+            case 4:
+                this._messages.push("Testando...");
+                this._messages.push("E mais uma vez testando...");
+                spriteFrameNames.push("child_idle_1.png");
+                spriteFrameNames.push("child_idle_2.png");
+                bgName = "castle.png";
+                break;
+            case 5:
+                if (win) {
+                    this._messages.push("Testando...");
+                    this._messages.push("E mais uma vez testando...");
+                    spriteFrameNames.push("child_idle_1.png");
+                    spriteFrameNames.push("child_idle_2.png");
+                    bgName = "castle.png";
+                } else {
+                    this._messages.push("Testando...");
+                    this._messages.push("E mais uma vez testando...");
+                    spriteFrameNames.push("child_idle_1.png");
+                    spriteFrameNames.push("child_idle_2.png");
+                    bgName = "castle.png";
+                }
+                break;
+        }
+
+        var bg = cc.Sprite.create(bgName);
+        bg.setAnchorPoint(cc.p(0, 0));
+        bg.setPosition(cc.p(0, 0));
+
+        var character = cc.Sprite.createWithSpriteFrameName(spriteFrameNames[0]);
+        character.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
 
         this._textLabel = cc.LabelBMFont.create("", fnt_Dialogue, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
         this._textLabel.setAnchorPoint(cc.p(0, 1));
         this._textLabel.setPosition(cc.p(20, winSize.height - 30));
 
+        this.addChild(bg);
+        this.addChild(character);
         this.addChild(this._textLabel);
 
-        this._dialogueStep = 0;
-        this._messageLength = 0;
+        var anim = cc.Animation.create();
+
+        anim.setDelayPerUnit(0.5);
+        anim.setRestoreOriginalFrame(true);
+
+        for (var i = 0; i < spriteFrameNames.length; i++){
+            var frame = spriteCache.getSpriteFrame(spriteFrameNames[i]);
+            if (frame)
+                anim.addSpriteFrame(frame);
+        }
+
+        var action = cc.RepeatForever.create(cc.Animate.create(anim));
+        character.runAction(action);
 
         this.runAction(cc.Sequence.create([
             cc.DelayTime.create(1),
