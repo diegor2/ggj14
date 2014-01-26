@@ -42,16 +42,18 @@ var Enemy = Actor.extend({
     
     init: function(b2world, properties) {
 
-        this._spriteFrameName   = "child";
+        this._spriteFrameName   = "dragon";
         this._idleFrameName     = "_idle";
         this._runningFrameName  = "_run";
-        this._attackFrameName    = "_attack";
-        this._damageFrameName   = "_hit";
+        this._attackFrameName   = "_attack";
+        this._damageFrameName   = "_run"; // TODO
 
         this._idleFrameCount    = 2;
-        this._runningFrameCount = 4;
-        this._attackFrameCount   = 1;
+        this._runningFrameCount = 2;
+        this._attackFrameCount  = 1;
         this._damageFrameCount  = 1;
+
+        this._walkForceModifier = 0.65;
 
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
         this.type = GameObjectType.Enemy;
@@ -87,10 +89,10 @@ var Enemy = Actor.extend({
         var distanceY = myPosition.get_y() - playerPosition.get_y();
         var distance = Math.sqrt(distanceX * distanceX, distanceY * distanceY);
 
-        if((Math.abs(distance) < kEnemyPeacefulDistance)
+        if ((Math.abs(distance) < kEnemyPeacefulDistance)
             && (this.player.state != GameObjectState.Dead)) {
 
-            if(Math.abs(distance) < kEnemyAtackDistance ) {
+            if (Math.abs(distance) < kEnemyAttackDistance) {
                 this.attack();
             }
 
