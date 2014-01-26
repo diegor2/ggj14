@@ -11,7 +11,7 @@
    eJxjYBgFo2AUDGegMtAOIANoIrF10PhDHSgiscmNG1xmKKKpo0Xco8cNNc0gNZ5tgdgOiO2B2GEI8l2B2A2I3YHYYwjyfYHYD4j9gThgCPIBZhYp7Q==
   </data>
  </layer>
- <objectgroup name="objects" width="48" height="12" visible="0">
+ <objectgroup name="objects" width="48" height="12">
   <object type="Player" x="29" y="588" width="85" height="116"/>
   <object type="Enemy" x="1792" y="640" width="64" height="64"/>
  </objectgroup>
@@ -35,7 +35,7 @@
    eJxjYBgFo2AUjIJRMAqwAz4g5gdiAQJigxWIAbE4EEsQEBsFIw8AACD2AOU=
   </data>
  </layer>
- <objectgroup name="collision" width="48" height="12" visible="0">
+ <objectgroup name="collision" width="48" height="12">
   <object x="0" y="576">
    <polyline points="0,0 0,192 3072,192 3072,0 0,0"/>
   </object>
