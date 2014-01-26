@@ -95,7 +95,6 @@ var Actor = GameObject.extend({
 
         this._filterCategory = EntityFilterCategory.Actor;
         this._filterMask = 0xffff & ~EntityFilterCategory.Actor;
-//        this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + ".png");
 
         this._super(b2world, properties);
 

@@ -11,7 +11,7 @@ var kZOrderBase = 200;
 var kIdleActionTag = 400;
 var kWalkActionTag = 500;
 
-var kWalkForce = 3.0;
+var kWalkForce = 5.0;
 var kPlayerDamageTime = 0.5;
 var kPlayerDamageImpulseX = 1.1;
 var kStopVelocityMultiplier = 0.6;
@@ -68,6 +68,5 @@ var ContactType = {
 };
 
 var EntityFilterCategory = {
-    Actor: 0x0001,
-    Boundary: 0x0002
+    Actor: 0x0002
 };

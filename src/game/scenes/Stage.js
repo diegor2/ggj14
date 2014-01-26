@@ -199,7 +199,7 @@ var Stage = BaseLayer.extend({
         var points = properties["polylinePoints"];
         var isLoop = false;
         if (!points) {
-            points = properties["points"];
+            points = properties["polygonPoints"];
             isLoop = true;
         }
 

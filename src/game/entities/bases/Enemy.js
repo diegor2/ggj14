@@ -53,7 +53,6 @@ var Enemy = Actor.extend({
         this._atackFrameCount   = 1;
         this._damageFrameCount  = 1;
 
-
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
         this.type = GameObjectType.Enemy;
         this.life = kEnemyMaxLife;
