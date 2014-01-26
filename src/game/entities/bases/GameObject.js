@@ -176,7 +176,6 @@ var GameObject = cc.Class.extend({
 
     die: function() {
         this.state = GameObjectState.Dying;
-        this.destroyBody();
 
         if (this.node) {
             this.node.stopAllActions();
@@ -190,6 +189,7 @@ var GameObject = cc.Class.extend({
 
     _finishDying: function() {
 
+        this.destroyBody();
         this.state = GameObjectState.Dead;
         this.node.removeFromParent(true);
 

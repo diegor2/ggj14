@@ -100,6 +100,7 @@ var Dialogue = BaseLayer.extend({
         this._textLabel = cc.LabelBMFont.create("", fnt_Dialogue, winSize - 40, cc.TEXT_ALIGNMENT_LEFT);
         this._textLabel.setAnchorPoint(cc.p(0, 1));
         this._textLabel.setPosition(cc.p(20, winSize.height - 30));
+        this._textLabel.setColor(cc.c3b(200, 200, 200));
 
         this.addChild(this._textLabel);
 
