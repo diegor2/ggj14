@@ -170,16 +170,18 @@ var Dialogue = BaseLayer.extend({
 
 var DialogueScene = cc.Scene.extend({
     _nextLevel: 1,
+    _win: true,
 
-    ctor: function(level) {
+    ctor: function(level, win) {
         this._super();
         this._nextLevel = level;
+        this._win = win;
     },
 
     onEnter: function () {
         this._super();
         var layer = new Dialogue();
-        layer.init(this._nextLevel);
+        layer.init(this._nextLevel, this._win);
         this.addChild(layer);
     }
 

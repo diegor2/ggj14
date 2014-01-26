@@ -8,7 +8,7 @@ var Dragon = Enemy.extend({
         this._idleFrameName     = "_idle";
         this._runningFrameName  = "_run";
         this._attackFrameName   = "_attack";
-        this._damageFrameName   = "_run";
+        this._damageFrameName   = "_hit";
 
         this._idleFrameCount    = 2;
         this._runningFrameCount = 2;

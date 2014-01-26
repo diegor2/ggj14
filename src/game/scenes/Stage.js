@@ -120,6 +120,22 @@ var Stage = BaseLayer.extend({
                     this._createEnemy(Dragon2, gameObjectProperties);
                     break;
 
+                case "Thief":
+                    this._createEnemy(Thief, gameObjectProperties);
+                    break;
+
+                case "Thief2":
+                    this._createEnemy(Thief2, gameObjectProperties);
+                    break;
+
+                case "Doctor":
+                    this._createEnemy(Doctor, gameObjectProperties);
+                    break;
+
+                case "Doctor2":
+                    this._createEnemy(Doctor2, gameObjectProperties);
+                    break;
+
                 case "LevelEnd":
                     this._createGameObject(LevelEnd, gameObjectProperties);
                     break;
