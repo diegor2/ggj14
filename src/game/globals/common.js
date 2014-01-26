@@ -17,7 +17,7 @@ var kPlayerDamageImpulseX = 1.1;
 var kStopVelocityMultiplier = 0.6;
 var kStopVelocityMultiplierWhenDamaged = 0.7;
 var kDefaultAttackTime = 0.2;
-var kPlayerMaxLife = 6;
+var kPlayerMaxLife = 10;
 var kEnemyMaxLife = 4;
 var kEnemyPeacefulDistance = 2.0;
 var kEnemyAtackDistance = 0.05;
@@ -53,9 +53,7 @@ var GameObjectType  = {
     Unknown: 0,
     Player: 1,
     Enemy: 2,
-    Bone: 3,
-    Cookie: 4,
-    LevelEnd: 5
+    LevelEnd: 3
 };
 
 var ContactType = {

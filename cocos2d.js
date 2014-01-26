@@ -53,7 +53,6 @@
             'src/game/entities/bases/Actor.js',
             'src/game/entities/bases/Collectible.js',
             'src/game/entities/bases/Enemy.js',
-            'src/game/entities/collectibles/Bone.js',
             'src/game/entities/abstracts/LevelEnd.js',
             'src/game/entities/Player.js',
             'src/game/nodes/HUDLayer.js',
