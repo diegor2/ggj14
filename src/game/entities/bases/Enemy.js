@@ -8,12 +8,12 @@ var Enemy = Actor.extend({
 	
     _addFixtures: function() {
 
-        var width = this.node ? this.node.getContentSize().width * 0.19 : 0;
+        var width = this.node ? this.node.getContentSize().width * 0.25 : 0;
 
         this._addCircularFixture(width);
 
         var scale = this.node ? this.node.getScale() : 1;
-        var hitAreaRadius = width * 3.3;
+        var hitAreaRadius = width * 2;
         var hitAreaMargin = hitAreaRadius;
 
         var damageShape = new b2CircleShape;
@@ -124,9 +124,9 @@ var Enemy = Actor.extend({
 
     },
 
-    takeHit: function() {
+    takeHit: function(direction) {
 
-        this._super();
+        this._super(direction);
 
         this._attackCurrentWaitTime = 0;
         this._attackWaitTime = -1;

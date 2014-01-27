@@ -1,9 +1,9 @@
 var ChildPlayer = Player.extend({
 
-
     init: function(b2world, properties) {
 
         this._spriteFrameName   = "child";
+
         this._idleFrameName     = "_idle";
         this._runningFrameName  = "_run";
         this._attackFrameName   = "_attack";
@@ -16,12 +16,9 @@ var ChildPlayer = Player.extend({
 
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
 
-        this.type = GameObjectType.Player;
-        this.life = kPlayerMaxLife;
+        this._super(b2world, properties);
 
         this.node.setAnchorPoint(cc.p(0.5, 0.04));
-
-        this._super(b2world, properties);
 
     }
 

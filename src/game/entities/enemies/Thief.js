@@ -1,6 +1,5 @@
 var Thief = Enemy.extend({
 
-
     init: function(b2world, properties) {
 
         this._spriteFrameName   = "thief";
@@ -15,7 +14,6 @@ var Thief = Enemy.extend({
         this._attackFrameCount  = 1;
         this._damageFrameCount  = 1;
 
-        this._walkForceModifier = 0.5;
         this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
 
         this._super(b2world, properties);

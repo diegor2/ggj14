@@ -3,12 +3,12 @@ var Player = Actor.extend({
 
     _addFixtures: function() {
 
-        var width = this.node ? this.node.getContentSize().width * 0.19 : 0;
+        var width = this.node ? this.node.getContentSize().width * 0.25 : 0;
 
         this._addCircularFixture(width);
 
         var scale = this.node ? this.node.getScale() : 1;
-        var hitAreaRadius = width * 3.3;
+        var hitAreaRadius = width * 2;
         var hitAreaMargin = hitAreaRadius;
 
         var damageShape = new b2CircleShape;
@@ -38,8 +38,6 @@ var Player = Actor.extend({
     },
     
     init: function(b2world, properties) {
-
-        this.node = cc.Sprite.createWithSpriteFrameName(this._spriteFrameName + this._idleFrameName + "_1.png");
 
         this.type = GameObjectType.Player;
         this.life = kPlayerMaxLife;

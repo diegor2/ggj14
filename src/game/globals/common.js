@@ -23,7 +23,7 @@ var kPlayerMaxLife = 6;
 var kEnemyMaxLife = 6;
 
 var kEnemyPeacefulDistance = 30.0;
-var kEnemyAttackDistance = 5;
+var kEnemyAttackDistance = 4;
 
 var MovingState = {
     Stopped: 0,
