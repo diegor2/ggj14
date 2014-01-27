@@ -132,6 +132,26 @@ var Stage = BaseLayer.extend({
                     this._player.stage = this;
                     break;
 
+                case "ChildEnemy":
+                    this._player = new ChildPlayer();
+                    this._player.init(this._b2world, gameObjectProperties);
+                    this._player.stage = this;
+                    break;
+
+
+                case "ElderEnemy":
+                    this._player = new ElderPlayer();
+                    this._player.init(this._b2world, gameObjectProperties);
+                    this._player.stage = this;
+                    break;
+
+
+                case "YoungEnemy":
+                    this._player = new YoungPlayer();
+                    this._player.init(this._b2world, gameObjectProperties);
+                    this._player.stage = this;
+                    break;
+
                 case "Dragon":
                     this._createEnemy(Dragon, gameObjectProperties);
                     break;

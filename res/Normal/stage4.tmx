@@ -13,7 +13,9 @@
  </layer>
  <objectgroup name="objects" width="48" height="12">
   <object type="Player" x="29" y="588" width="85" height="116"/>
-  <object type="Dragon" x="2176" y="640" width="64" height="64"/>
+  <object type="ChildEnemy" x="1782" y="624" width="64" height="64"/>
+  <object type="YoungEnemy" x="624" y="630" width="64" height="64"/>
+  <object type="ElderEnemy" x="2962" y="638" width="64" height="64"/>
  </objectgroup>
  <layer name="grass" width="48" height="12" visible="0">
   <data encoding="base64" compression="zlib">
