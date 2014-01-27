@@ -8,7 +8,7 @@ var Player = Actor.extend({
         this._addCircularFixture(width);
 
         var scale = this.node ? this.node.getScale() : 1;
-        var hitAreaRadius = width * 2;
+        var hitAreaRadius = width * 2.6;
         var hitAreaMargin = hitAreaRadius;
 
         var damageShape = new b2CircleShape;

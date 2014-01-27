@@ -188,7 +188,7 @@ var Actor = GameObject.extend({
         if (this._attackDelay > 0 || this._damageTime > 0)
             return;
         this._attackTime = kDefaultAttackTime;
-        this._attackDelay = kDefaultAttackTime * 1.5;
+        this._attackDelay = kDefaultAttackTime * 3.5;
 
         var anim = this._loadAnimation(this._spriteFrameName + this._attackFrameName,
             this._attackFrameCount,

@@ -15,7 +15,7 @@ var kWalkForce = 12.0;
 var kWalkAnimSpeedFactor = 2;
 
 var kPlayerDamageTime = 0.3;
-var kPlayerDamageImpulseX = 4500.0;
+var kPlayerDamageImpulseX = 5000.0;
 var kStopVelocityMultiplier = 0.6;
 var kStopVelocityMultiplierWhenDamaged = 0.7;
 var kDefaultAttackTime = 0.1;
