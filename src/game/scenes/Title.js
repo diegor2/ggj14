@@ -47,6 +47,7 @@ var Title = BaseLayer.extend({
     },
 
     openCredits: function() {
+        console.log("openCredits");
         cc.Director.getInstance().replaceScene(new CreditsScene());
     }
 
