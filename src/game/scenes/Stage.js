@@ -473,10 +473,10 @@ var Stage = BaseLayer.extend({
 
         var nextLevel = this._level + 1;
 
-        if (nextLevel >= kMaxLevel || win)
-            cc.Director.getInstance().replaceScene(new DialogueScene(nextLevel, win));
-        else
+        if (this._level < kMaxLevel && !win)
             cc.Director.getInstance().replaceScene(new TitleScene());
+        else
+            cc.Director.getInstance().replaceScene(new DialogueScene(nextLevel, win));
 
     },
 
