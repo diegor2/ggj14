@@ -32,16 +32,16 @@ var Dialogue = BaseLayer.extend({
                 this._messages.push("Son! Stop playing around...");
                 this._messages.push("Care about your future and try not to throw it away.");
                 this._messages.push("You don't need to walk faster than the time, but\nit's necessary to follow it.");
-                //spriteFrameNames.push("child_idle_1.png");
-                //spriteFrameNames.push("child_idle_2.png");
+                spriteFrameNames.push("mother_1.png");
+                spriteFrameNames.push("mother_2.png");
                 bgName = img_Dialogue1Bg;
                 break;
             case 3:
                 this._messages.push("Hey!");
                 this._messages.push("Where is the report for today?");
                 this._messages.push("Photos are not enough!\nTry clearing your vision and mature your mind.");
-                //spriteFrameNames.push("child_idle_1.png");
-                //spriteFrameNames.push("child_idle_2.png");
+                spriteFrameNames.push("boss_1.png");
+                spriteFrameNames.push("boss_2.png");
                 bgName = img_Dialogue2Bg;
                 break;
             case 4:
@@ -79,7 +79,7 @@ var Dialogue = BaseLayer.extend({
         if (spriteFrameNames.length > 0) {
 
             var character = cc.Sprite.createWithSpriteFrameName(spriteFrameNames[0]);
-            character.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+            character.setPosition(cc.p(winSize.width / 2, winSize.height / 3));
             this.addChild(character);
 
             var anim = cc.Animation.create();
